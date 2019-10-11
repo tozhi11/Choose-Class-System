@@ -22,8 +22,10 @@ c.execute('''CREATE TABLE CLASS
          CLASSTIME  CHAR(50)                 NOT NULL,
          ADDRESS    CHAR(50)                 NOT NULL,
          TEACHER    CHAR(50)                 NOT NULL,
+         COMMENTS   CHAR(150)                         ,
          COUNT      INT                      NOT NULL,
-         POINT      INT                      NOT NULL  
+         POINT      INT                      NOT NULL,
+         SCORE      FLOAT                                                         
         );''')
     
 c = conn.cursor()
