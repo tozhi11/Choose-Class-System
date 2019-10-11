@@ -1,11 +1,61 @@
-/api/Student
+查看学生状态
+/api/Student/Status
 
 request:
 学生编号 peopleID
 
 response:
+status:
 登录成功 返回0
 登录失败 返回1
+学号:peopleID
+姓名:name
+专业:collega
+入学时间:admissionYear
+电话 telephone
+
+查看老师状态
+/api/Teacher/Status
+request:
+教师编号 peopleID
+response:
+status:
+登录成功 返回0
+登录失败 返回1
+教工号 peopleID
+姓名 name
+电话 telephone
+课程 course
+
+改变学生状态
+/api/Student/ChangeStatus
+request:
+姓名:peopleName
+账号:peopleID
+密码:passwd
+院系:collega
+入学时间:admissionYear
+电话 telephone
+
+response:
+status:
+修改成功 0
+没有该学生 1
+
+改变老师状态
+/api/Student/ChangeStatus
+request:
+姓名:peopleName
+账号:peopleID
+密码:passwd
+院系:collega
+课程:course
+电话 telephone
+
+response:
+status:
+修改成功 0
+没有该老师 1
 
 
 选课API
@@ -35,7 +85,6 @@ response:
 未选修当前课程:2
 
 课程状态
-
 /api/Student/ClassStatus
 request:
 学生编号:peopleID
@@ -122,13 +171,39 @@ status:
 登录失败 1
 不存在当前课程 2
 
-注册(默认学生，老师要管理员改)
+
+管理员删除课程
+/api/Manager/DeleteClass
+request:
+教师编号:peopleID
+课程编号:classID
+
+response:
+status:
+删除成功 0
+登录失败 1
+不存在当前课程 2
+没有删除权限 3
+
+管理员删除学生
+/api/Manager/DeleteStudent
+
+request:
+学生编号
+
+
+注册(做一个选项?老师和学生的权限不一样)
 /api/SignUp
 
 request:
 姓名:peopleName
 账号:peopleID
 密码:passwd
+院系:collega
+身份:position(老师 = 0，学生 = 1)
+入学时间:admissionYear / 科目:collega
+电话 telephone
+
 
 response:
 status:
@@ -143,7 +218,6 @@ request:
 密码:password
 
 response:
-
 status:
 登录成功:0
 账号或密码错误:1
