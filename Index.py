@@ -14,23 +14,6 @@ def index():
         return 'Logged in as %s %s' % (escape(session['username']), escape(session['position']))
     return 'You are not logged in'
 
-@app.route('/api/Student/Status', methods=['GET', 'POST'])
-def studentStatus():
-    
-    return True
-
-@app.route('/api/Teacher/Status', methods = ['GET', 'POST'])
-def teacherStatus():
-    return True
-
-@app.route('/api/Student/ChangeStatus',methods = ['GET', 'POST'])
-def changeTeacherStatus():
-    return True
-
-@app.route('/api/Teacher/ChangeStatus',methods = ['GET', 'POST'])
-def changeStudentStatus():
-    return True
-
 @app.route('/api/Student/ChooseClass',methods = ['GET', 'POST'])
 def ChooseClass():
     return True
@@ -75,34 +58,40 @@ def ManagerDeleteClass():
 def DeleteStudent():
     return True
 
-@app.route('/api/SignUp')
+@app.route('/api/SignUp' methods = ['GET','POST'])
 def SignUp():
-    return True
+    if method == POST:
+        name = request.peopleName
+        ID = request.peopleID
+        passwd = request.passwd
+        college = request.college
+        position = request.position
+        if position == 0:
+            classID = request.classID
+        if position == 1:
+            admissionYear = request.admissionYear
+        telephone = request.telephone
+    
 
 
 # userInDataBase uses to check if the user in the datebase.
 # if the username or password is wrong, return 1.
 def userInDataBase(username,passwd):
     # session[username] = 'teacher'
-    order = 'SELECT PASSWORD, POSITION, NAME FROM PEOPLE WHERE ID IS '
+    order = 'SELECT * FROM PEOPLE WHERE ID IS '
     order = order + username
     conn = sqlite3.connect('choose-class-system.db')
     c = conn.cursor()
     print (order)
     cursor = c.execute(order)
     for row in cursor:
-        if row[0] == passwd:
+        if row[1] == passwd:
             session['username'] = username
             session['password'] = passwd
-            if row[1] == 'manager':
-                return jsonify({'status': 0, 'position': 0, 'name':row[2]})
-            if row[1] == 'teacher':
-                return jsonify({'status': 0, 'position': 1, 'name':row[2]})
-            if row[1] == 'student':
-                return jsonify({'status': 0, 'position': 2, 'name':row[2]})
+                return jsonify({'status': 0,'peopleID': row[0], 'name': row[2], 'position' : row[3],'college': row[5], 'admissionYear':row[6]})
         else:
-            return jsonify({'status': 1, 'position': -1, 'name':''})
-    return jsonify({'status': 1, 'position': -1, 'name':''})
+            return jsonify({'status': 1})
+    return jsonify({'status': 1})
 
 @app.route('/api/login', methods = ['GET', 'POST'])
 def login():
@@ -118,6 +107,7 @@ def login():
         </form>
     '''
 
+# if username isn't in session return 1 
 @app.route('/api/logout')
 def logout():
     username = session.get('username')

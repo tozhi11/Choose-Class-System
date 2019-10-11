@@ -15,7 +15,7 @@ c.execute('''CREATE TABLE PEOPLE
         COLLEGE     CHAR(50)                         ,
         YEAR        CHAR(10)                         ,
         COURSE      CHAR(50));''')
-c = conn.cursor()
+
 c.execute('''CREATE TABLE CLASS
         (CLASSID    CHAR(50) PRIMARY KEY     NOT NULL,
          CLASSNAME  CHAR(50)                 NOT NULL,
@@ -27,8 +27,14 @@ c.execute('''CREATE TABLE CLASS
          POINT      INT                      NOT NULL,
          SCORE      FLOAT                                                         
         );''')
-    
-c = conn.cursor()
+        
+c.execute('''CREATE TABLE PEOPLETOCLASS(
+        ID          INTEGER   PRIMARY KEY   AUTOINCREMENT,
+        PEOPLEID    CHAR(50)                NOT NULL,
+        CLASSID     CHAR(50)                NOT NULL
+
+);''')
+
 print "Table created successfully"
 conn.commit()
 conn.close()
