@@ -10,7 +10,7 @@ status:
 登录失败 返回1
 学号:peopleID
 姓名:name
-专业:collega
+专业:college
 入学时间:admissionYear
 电话 telephone
 
@@ -33,7 +33,7 @@ request:
 姓名:peopleName
 账号:peopleID
 密码:passwd
-院系:collega
+院系:college
 入学时间:admissionYear
 电话 telephone
 
@@ -48,7 +48,7 @@ request:
 姓名:peopleName
 账号:peopleID
 密码:passwd
-院系:collega
+院系:college
 课程:course
 电话 telephone
 
@@ -104,6 +104,7 @@ request:
 课程名称:className
 上课时间:classTime
 上课地点:classAddress
+选课人数:count
 学分:classPoint
 
 response:
@@ -133,6 +134,7 @@ request:
 课程名称:className
 上课时间:classTime
 上课地点:classAddress
+选课人数:count
 学分:classPoint
 
 response:
@@ -163,6 +165,7 @@ request:
 课程名称:className
 上课时间:classTime
 上课地点:classAddress
+选课人数:count
 学分:classPoint
 
 response:
@@ -199,9 +202,9 @@ request:
 姓名:peopleName
 账号:peopleID
 密码:passwd
-院系:collega
+院系:college
 身份:position(老师 = 0，学生 = 1)
-入学时间:admissionYear / 科目:collega
+入学时间:admissionYear / 科目:college
 电话 telephone
 
 
