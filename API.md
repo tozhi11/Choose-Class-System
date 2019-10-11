@@ -8,6 +8,8 @@ response:
 status:
 登录成功 返回0
 登录失败 返回1
+学生不存在 返回2
+method错误 返回3
 学号:peopleID
 姓名:name
 专业:college
@@ -22,6 +24,8 @@ response:
 status:
 登录成功 返回0
 登录失败 返回1
+教师不存在 返回2
+method错误 返回3
 教工号 peopleID
 姓名 name
 电话 telephone
@@ -41,6 +45,7 @@ response:
 status:
 修改成功 0
 没有该学生 1
+method错误 2
 
 改变老师状态
 /api/Student/ChangeStatus
@@ -56,6 +61,7 @@ response:
 status:
 修改成功 0
 没有该老师 1
+method错误 2
 
 
 选课API
@@ -70,6 +76,7 @@ response:
 登录异常:1
 与已选课程冲突:2
 超过选课上限:3
+method错误 4
 
 
 退选
@@ -83,6 +90,7 @@ response:
 退课成功:0
 登录异常:1
 未选修当前课程:2
+method错误 3
 
 课程状态
 /api/Student/ClassStatus
@@ -93,6 +101,7 @@ response:
 status:
 登录成功:0
 登录失败:1
+method错误 2
 class:
 
 
@@ -112,6 +121,7 @@ status:
 添加成功 0
 登录失败 1
 已存在当前课程 2
+method错误 3
 
 教师删除课程
 /api/Teacher/DeleteClass
@@ -124,6 +134,7 @@ status:
 删除成功 0
 登录失败 1
 不存在当前课程 2
+method错误 3
 
 
 教师更新课程信息
@@ -142,6 +153,8 @@ status:
 更改成功 0
 登录失败 1
 不存在当前课程 2
+method错误 3
+
 
 管理员更新权限
 /api/Manager/SetPower
@@ -155,6 +168,7 @@ status:
 更改成功 0
 当前账号没有更改权限 1
 要修改的人不存在 2
+method错误 3
 
 
 管理员更新课程
@@ -173,6 +187,7 @@ status:
 更改成功 0
 登录失败 1
 不存在当前课程 2
+method错误 3
 
 
 管理员删除课程
@@ -187,6 +202,7 @@ status:
 登录失败 1
 不存在当前课程 2
 没有删除权限 3
+method错误 4
 
 管理员删除学生
 /api/Manager/DeleteStudent
@@ -212,6 +228,7 @@ response:
 status:
 注册成功:0
 当前账号已存在:1
+method错误 2
 
 登录:
 /api/login
@@ -224,6 +241,7 @@ response:
 status:
 登录成功:0
 账号或密码错误:1
+method错误 2
 
 当前的人的身份:
 position:
