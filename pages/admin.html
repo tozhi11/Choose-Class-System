@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>大学生选课系统</title>
+	<link rel="stylesheet" href="../style/main.css">
+	<link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+	<header>
+		<div class="header-left">
+			<h2>选课系统</h2>
+		</div>
+		<div class="header-right">
+			
+		</div>
+	</header>
+	<div id="body-wrapper" class="body-wrapper">
+		<div id="list-wrapper" class="list-wrapper">
+			<ul id="list-box"></ul>
+		</div>
+		<div id="main-wrapper" class="main-wrapper"></div>
+	</div>
+	
+
+	<script src="../script/main.js"></script>
+	<script src="../script/global.js"></script>
+	<script>
+	let listBox = document.querySelector("#list-box");
+	let adminButtonList = ['管理人员档案', '设置人员权限'];
+	let storage = window.localStorage;
+	let isLogin = storage["isLogin"];
+	let userID = storage["userID"];
+	let position = storage["position"];
+
+	
+	window.onload = function() {
+		if(!isLogin) {
+			window.location.href = "login.html";
+		}
+		for(var i = 0; i< officerButtonList.length; i++) {
+			var li = document.createElement("li");
+			li.innerHTML = adminButtonList[i];
+			listBox.appendChild(li);
+		}
+	}
+		
+	function getUserStatus() {
+		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Student/Status";
+	}
+
+
+	listBox.addEventListener("mouseover", function(e) {
+		var e = e || window.event;
+		var target = e.target || e.srcElement;
+		if(target.nodeName.toLowerCase() === 'li') {
+				target.classList.add("li-active");
+		}
+	});
+
+	listBox.addEventListener("mouseout", function(e) {
+		var e = e || window.event;
+		var target = e.target || e.srcElement;
+		if(target.nodeName.toLowerCase() === 'li') {
+				target.classList.remove("li-active");
+		}
+	});
+
+	listBox.addEventListener("click", function(e) {
+		var e = e || e.window.event;
+		var target = e.target || e.srcElement;
+		if(target.nodeName.toLowerCase() === 'li') {
+			target.classList.add("li-active");
+		}
+	});
+
+	</script>
+</body>
+</html>
