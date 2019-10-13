@@ -1,0 +1,81 @@
+html, body{
+	width: 100%;
+	height: 100%;
+}
+
+header {
+	position: absolute;
+	width: 100%;
+	height: 70px;
+	overflow: hidden;
+	color: #fff;
+	background-color: #555;
+}
+
+.header-left {
+	float: left;
+	height: 70px;
+	margin-left: 20px;
+}
+
+.header-right {
+	float: right;
+	height: 70px;
+	color: #fff;
+}
+
+.header-right a {
+	color: #fff;
+	line-height: 80px;
+}
+
+.header-right ion-icon {
+	margin: 0 20px;
+	font-size: 20px;
+}
+
+.header-right p {
+	float: left;
+	height: 70px;
+	line-height: 70px;
+	margin: 0;
+}
+
+.body-wrapper {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	padding-top: 70px;
+	flex-flow: row wrap;
+}
+
+.list-wrapper {
+	width: 250px;
+	height: 100%;
+	background-color: #60acfc;
+	color: #fff;
+}
+
+.list-wrapper ul {
+	box-sizing: border-box;
+	display: flex;
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+	flex-flow: column wrap;
+	list-style-type: none;
+	cursor: pointer;
+	text-align: center;
+}
+
+.list-wrapper ul li {
+	flex: 70px;
+	line-height: 70px;
+}
+
+li:hover,
+.li-active {
+	background-color: #fff;
+	color: #000;
+}

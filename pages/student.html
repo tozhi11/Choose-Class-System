@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>大学生选课系统</title>
+	<link rel="stylesheet" href="../style/main.css">
+	<link rel="stylesheet" href="../style/style.css">
+	<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<div class="header-left">
+			<h2>选课系统</h2>
+		</div>
+		<div id="header-right" class="header-right">
+			<a href="login.html" id="user-exit"><ion-icon name="exit"></ion-icon></a>
+		</div>
+	</header>
+	<div id="body-wrapper" class="body-wrapper">
+		<div id="list-wrapper" class="list-wrapper">
+			<ul id="list-box"></ul>
+		</div>
+		<div id="main-wrapper" class="main-wrapper"></div>
+	</div>
+	
+
+	<script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+	<script src="../script/main.js"></script>
+	<script src="../script/global.js"></script>
+	<script>
+	let listBox = document.querySelector("#list-box");
+	let headerRight = document.querySelector("#header-right");
+	let exit = document.querySelector("#user-exit");
+	let stuButtonList = ['选课', '查看选课情况及退选'];
+	let storage = window.localStorage;
+	let isLogin = storage["isLogin"];
+	let userID = storage["userID"];
+	let position = storage["position"];
+
+	console.log(isLogin, userID, position);
+
+	window.onload = function() {
+		if(!isLogin) {
+			window.location.href = "login.html";
+		}
+		for(var i = 0; i < stuButtonList.length; i++) {
+			var li = document.createElement("li");
+			li.innerHTML = stuButtonList[i];
+			listBox.appendChild(li);
+		}
+		getUserStatus();
+	}
+	
+	function getUserStatus() {
+		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Student/Status";
+		var xhr = null;
+		if(window.XMLHttpRequest) {
+			xhr = new XMLHttpRequest();
+		} else {
+			xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.send(null);
+		xhr.onreadystatechange = function(e) {
+			var e = e || window.event;
+			var target = e.target || e.srcElement;
+			if(target.readyState === 4 && target.status === 200) {
+				var resultStr = target.responseText;
+				var resultObj = eval('(' + resultStr + ')');
+				renderStatus(resultObj);
+			}
+		}
+	}
+
+	function renderStatus(obj) {
+		console.log(obj);
+		var p = document.createElement("p");
+		p.innerHTML = "欢迎你！" + obj.name + "(" + obj.college + ", " + obj.admissionYear + "-" + (parseInt(obj.admissionYear) + 4) + ")" ;
+		headerRight.appendChild(p);
+	}
+
+	exit.addEventListener("click", function(e) {
+		localStorage.remove("isLogin");
+		localStorage.remove("userID");
+		localStorage.remove("position");
+	});
+
+	listBox.addEventListener("mouseover", function(e) {
+		var li = listBox.querySelectorAll("li");
+		var e = e || window.event;
+		var target = e.target || e.srcElement;
+		if(target.nodeName.toLowerCase() === 'li') {
+			if(target.classList.contains("li-active")) {
+				li.forEach(function(val, idx, arr) {
+					if(arr[idx].classList.contains("li-active")) {
+						arr[idx].classList.remove("li-active");
+					}
+				})
+			}
+		}
+	});
+
+	listBox.addEventListener("click", function(e) {
+		var e = e || e.window.event;
+		var target = e.target || e.srcElement;
+		if(target.nodeName.toLowerCase() === 'li') {
+			target.classList.add("li-active");
+		}
+	});
+
+	</script>
+</body>
+</html>

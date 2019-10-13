@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>大学生选课系统</title>
+</head>
+<body>
+	<div class="sign-up-wrapper">
+		<form action="/api/SignUp" id="sign-up-box">
+			<div class="check-box">
+				<input type="radio" name="position" value="teacher">老师
+				<input type="radio" name="position" value="student">学生
+			</div>
+			<ul>
+				<li>
+					<p>姓名</p>
+					<input type="text" id="people-name">
+				</li>
+				<li>
+					<p>学号/教工号</p>
+					<input type="text" id="people-id">
+				</li>
+				<li>
+					<p>密码</p>
+					<input type="password" id="passwd">
+				</li>
+				<li>
+					<p>确认密码</p>
+					<input type="password" id="recheck-pwd">
+				</li>
+				<li>
+					<p>入学时间</p>
+					<select name="admissionYear" id="admission-year">
+					</select>
+				</li>
+				<li>
+					<p>院系</p>
+					<select name="college" id="college">
+						<option value=""></option>
+						<option value=""></option>
+						<option value=""></option>
+						<option value=""></option>
+						<option value=""></option>
+						<option value=""></option>
+					</select>
+				</li>
+				<li>
+					<p>电话</p>
+					<input type="text" id="telephone">
+				</li>
+				<li><input type="submit" id="sign-up-submit"></li>
+			</ul>
+		</form>
+	</div>
+
+	<script>
+	var collegeArr = []
+	var peopleName = document.querySelector("#people-name");
+	var peopleID = document.querySelector("#people-id");
+	var pwd = document.querySelectorAll("input[type='password']");
+	var admissionYear = document.querySelector("#admission-year");
+	var college = document.querySelector("#college");
+	var date = new Date();
+	var year = null;
+	for(var i = 0; i < 4; i++) {
+		year = date.getFullYear() - i;
+		var option = document.createElement("option");
+		option.innerHTML = year;
+		admissionYear.appendChild(option);
+	}
+	</script>
+</body>
+</html>
