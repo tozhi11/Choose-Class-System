@@ -42,7 +42,16 @@ status:
 方法错误 2
 
 课程信息
-
+class(是个json数组):
+classID:
+className:
+classTime:
+address:
+teacher:
+comments:
+count:
+point:
+score:
 
 ## 选课API
 /api/Student/ChooseClass
