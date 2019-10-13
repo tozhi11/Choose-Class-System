@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>大学生选课系统</title>
+</head>
+<body>
+	<script src="script/global.js"></script>
+	<script>
+		if(window.localStorage.getItem("isLogin")) {
+			window.location.href = "pages/login.html";
+		} else {
+			window.location.href = "pages/main.html";
+		}
+	</script>
+</body>
+</html>
