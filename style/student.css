@@ -83,3 +83,42 @@
 	background-color: #e3fdfd;
 	border: 1px solid #fff;
 }
+
+.class-detail {
+	position: absolute;
+	display: none;
+	top: 28%;
+	left: 38%;
+	box-sizing: border-box;
+	flex-direction: row;
+	width: 640px;
+	height: 420px;
+	margin: 0 auto;
+	padding: 50px;
+	border: 2px solid #00adb5;
+	background-color: #fff;
+}
+
+.class-comments {
+	box-sizing: border-box;
+	width: 300px;
+	height: 300px;
+	padding: 20px;
+	border: 1.5px solid #00adb5;
+	overflow: auto;
+}
+
+.class-comments::-webkit-scrollbar {
+	display: none;
+}
+
+.class-comments p{
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.detail-item {
+	list-style: none;
+	font-size: 16px;
+	line-height: 30px;
+}

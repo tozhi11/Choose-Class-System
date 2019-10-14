@@ -84,7 +84,7 @@ header {
 	line-height: 50px;
 }
 
-li:hover,
+.list-title:hover,
 .li-active {
 	background-color: #00adb5;
 	color: #fff;

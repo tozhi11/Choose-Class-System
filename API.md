@@ -45,13 +45,25 @@ status:
 class(json数组):
 classID:
 className:
-classTime:
-classAddress:
+<!-- classTime: -->
+<!-- classAddress: -->
 teacher:
-comments:
+<!-- comments: -->
 count:
 point:
 score:
+
+## 查看课程具体信息
+/api/Class/detail
+
+### request: 
+课程编号 classID
+
+### response:
+课程信息class(json数组)
+classTime: 上课时间
+classAddress: 上课地点
+comments: 课程简介
 
 ## 选课API
 /api/Student/ChooseClass
