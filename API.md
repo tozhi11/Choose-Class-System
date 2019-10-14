@@ -26,10 +26,10 @@ status:
 登录失败 返回1
 教师不存在 返回2
 method错误 返回3
-教工号 peopleID
-姓名 name
-电话 telephone
-课程 course
+教工号: peopleID
+姓名: name
+电话: telephone
+课程: course
 
 ## 查看课程状态
 /api/Class
@@ -42,11 +42,11 @@ status:
 方法错误 2
 
 课程信息
-class(是个json数组):
+class(json数组):
 classID:
 className:
 classTime:
-address:
+classAddress:
 teacher:
 comments:
 count:
@@ -91,11 +91,11 @@ status:
 登录成功:0
 登录失败:1
 method错误 2
-class(是个json数组):
+class(json数组):
 classID:
 className:
 classTime:
-address:
+classAddress:
 teacher:
 comments:
 count:
@@ -181,7 +181,7 @@ method错误 3
 上课地点:classAddress
 选课人数:count
 学分:classPoint
-分数:score
+课程评分:score
 描述:comments
 
 ### response:

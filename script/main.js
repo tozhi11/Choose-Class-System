@@ -6,7 +6,7 @@ let storage = window.localStorage;
 let isLogin = storage["isLogin"];
 let userID = storage["userID"];
 let position = storage["position"];
-
+let li = listBox.querySelectorAll("li");
 // console.log(isLogin, userID, position);
 
 
@@ -61,7 +61,7 @@ exit.addEventListener("click", function(e) {
 
 // //鼠标滑入列表栏时
 // listBox.addEventListener("mouseover", function(e) {
-// 	var li = listBox.querySelectorAll("li");
+// 	
 // 	var e = e || window.event;
 // 	var target = e.target || e.srcElement;
 // 	if(target.nodeName.toLowerCase() === 'li') {
@@ -79,6 +79,11 @@ exit.addEventListener("click", function(e) {
 listBox.addEventListener("click", function(e) {
 	var e = e || e.window.event;
 	var target = e.target || e.srcElement;
+	li.forEach(function(val, idx, arr) {
+		if(arr[idx].classList.contains("li-active")) {
+			arr[idx].classList.remove("li-active");
+		}
+	})
 	target.classList.add("li-active");
 	if(target.nodeName.toLowerCase() === 'li') {
 		switch(target.innerHTML) {
