@@ -16,26 +16,105 @@ def index():
 
 @app.route('/api/Student/ChooseClass',methods = ['GET', 'POST'])
 def ChooseClass():
-    return True
+    if request.method == 'POST':
+        classID = request.classID
+        peopleID = request.peopleID
+        if session['username'] != peopleID || session['position'] != 2:
+            return jsonify({'status': 1})
+        order = 'SELECT * from PEOPLETOCLASS WHERE PEOPLEID=' + peopleID +' AND CLASSID='+ classID
+        print (order)
+        conn = sqlite3.connect('choose-class-system.db')
+        c = conn.cursor()
+        cursor = c.execute(order)
+        for row in cursor:
+            if row[1] == classID:
+                return jsonify({'status': 2})
+        if len(cursor) >= 2:
+            return jsonify({'status': 3})
+        order = 'INSERT INTO PEOPLETOCLASS (PEOPLEID, CLASSID) VALUES (' + peopleID +',' + classID +')'
+        print (order)
+        c.execute(order)
+        conn.commit()
+        conn.close()
+    return jsonify({'status': 4})
 
 @app.route('/api/Student/WithdrawClass',methods = ['GET', 'POST'])
 def WithdrawClass():
-    return True
+    if request.method == 'POST':
+        classID = request.classID
+        peopleID = request.peopleID
+        if session['username'] != peopleID || session['position'] != 2:
+            return jsonify({'status': 1})
+        order = 'SELECT * from PEOPLETOCLASS WHERE PEOPLEID=' + peopleID +' AND CLASSID='+ classID
+        print (order)
+        conn = sqlite3.connect('choose-class-system.db')
+        c = conn.cursor()
+        cursor = c.execute(conn)
+        for row in cursor:
+            if row[1] == classID:
+                order = 'DELETE FROM PEOPLETOCLASS WHERE PEOPLEID=' + peopleID +' AND CLASSID='+ classID
+                print (order)
+                c.execute(order)
+                conn.commit()
+                return jsonify({'status': 0})
+        return jsonify({'status': 2})
+    return jsonify({'status': 3})
 
 @app.route('/api/Student/ClassStatus',methods = ['GET', 'POST'])
 def ClassStatus():
-    return True
+    if request.method == 'POST':
+        classID = request.classID
+        peopleID = request.peopleID
+        if session['username'] != peopleID || session['position'] != 2:
+            return jsonify({'status': 1})
+        order = 'SELECT * from CLASS'
+        print (order)
+        conn = sqlite3.connect('choose-class-system.db')
+        c = conn.cursor()
+        cursor = c.execute(conn)
+        t={}
+        for num in range(1,len(cursor)):
+            t[str(num)] = {
+                'classID':   cursor[num - 1][0],
+                'classname': cursor[num-1][1],
+                'classTime': cursor[num-1][2],
+                'address':   cursor[num-1][3],
+                'teacher':   cursor[num-1][4],
+                'comments':  cursor[num-1][5],
+                'count':     cursor[num-1][6],
+                'point':     cursor[num-1][7],
+                'score':     cursor[num-1][8]
+            }
+        return jsonify({'status': 0, 'class':t})
+    return jsonify({'status': 2})
 
 @app.route('/api/Teacher/AddClass', methods = ['GET', 'POST'])
 def AddClass():
-    return True
+    if request.method == 'POST':
+        peopleID = request.peopleID
+        if session['username'] != peopleID || session['position'] != 1:
+            return jsonify({'status': 1})
+        conn = sqlite3.connect('choose-class-system.db')
+        c = conn.cursor()
 
-@app.route('/api/Teacher/DeleteClass', methods = ['GET', 'POST'])
-def TeacherDeleteClass():
-    return True
+        className = request.className
+        classTime = request.classTime
+        classAddress = request.classAddress
+        count = request.count
+        classPoint = request.classPoint
+        comments = request.comments
+        order = 'INSERT INTO CLASS(CLASSNAME,CLASSTIME,ADDRESS,TEACHER,COMMENTS,COUNT,POINT) VALUES ('\
+            + className +','+classTime +','+ classAddress+',' + session['name'] +','+comments +','+count+','+point+')'
+        print (order)
+        c.execute(order)
+        conn.commit()
+        conn.close()
+        return jsonify({'status': 0})
+    return jsonify({'status': 3})
 
 @app.route('/api/Teacher/UpdataClass', methods  = ['GET', 'POST'])
 def TeacherUpdataClass():
+    
     return True
 
 # @app.route('/api/Teacher/GetInformation', methods=['GET', 'POST'])
@@ -60,7 +139,7 @@ def DeleteStudent():
 
 @app.route('/api/SignUp' methods = ['GET','POST'])
 def SignUp():
-    if method == POST:
+    if method == 'POST':
         name = request.peopleName
         ID = request.peopleID
         passwd = request.passwd
@@ -78,7 +157,7 @@ def SignUp():
 # if the username or password is wrong, return 1.
 def userInDataBase(username,passwd):
     # session[username] = 'teacher'
-    order = 'SELECT * FROM PEOPLE WHERE ID IS '
+    order = 'SELECT * FROM PEOPLE WHERE ID='
     order = order + username
     conn = sqlite3.connect('choose-class-system.db')
     c = conn.cursor()
@@ -87,7 +166,8 @@ def userInDataBase(username,passwd):
     for row in cursor:
         if row[1] == passwd:
             session['username'] = username
-            session['password'] = passwd
+            session['position'] = row[3]
+            session['name'] = row[2]
                 return jsonify({'status': 0,'peopleID': row[0], 'name': row[2], 'position' : row[3],'college': row[5], 'admissionYear':row[6]})
         else:
             return jsonify({'status': 1})

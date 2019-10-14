@@ -42,7 +42,16 @@ status:
 方法错误 2
 
 课程信息
-
+class(是个json数组):
+classID:
+className:
+classTime:
+address:
+teacher:
+comments:
+count:
+point:
+score:
 
 ## 选课API
 /api/Student/ChooseClass
@@ -82,8 +91,17 @@ status:
 登录成功:0
 登录失败:1
 method错误 2
-class:
-
+class(是个json数组):
+classID:
+className:
+classTime:
+address:
+teacher:
+comments:
+count:
+point:
+score:
+ 
 <!-- 打分
 /api/Student/Judge
 request:
@@ -104,7 +122,6 @@ method错误 4 -->
 /api/Teacher/AddClass
 ### request:
 教师编号:peopleID
-课程编号:classID
 课程名称:className
 上课时间:classTime
 上课地点:classAddress

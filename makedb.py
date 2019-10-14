@@ -10,14 +10,14 @@ c.execute('''CREATE TABLE PEOPLE
        (ID          CHAR(10) PRIMARY KEY     NOT NULL,
         PASSWORD    CHAR(50)                 NOT NULL,
         NAME        CHAR(50)                 NOT NULL,
-        POSITION    CHAR(50)                 NOT NULL,
+        POSITION    INT                      NOT NULL,
         TELEPHONE   CHAR(50)                         ,
         COLLEGE     CHAR(50)                         ,
         YEAR        CHAR(10)                         ,
         COURSE      CHAR(50));''')
 
 c.execute('''CREATE TABLE CLASS
-        (CLASSID    CHAR(50) PRIMARY KEY     NOT NULL,
+        (CLASSID    INTEGER PRIMARY KEY     AUTOINCREMENT,
          CLASSNAME  CHAR(50)                 NOT NULL,
          CLASSTIME  CHAR(50)                 NOT NULL,
          ADDRESS    CHAR(50)                 NOT NULL,
