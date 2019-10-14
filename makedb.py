@@ -4,7 +4,7 @@ import os
 
 conn = sqlite3.connect('choose-class-system.db')
 c = conn.cursor()
-print "Opened database successfully"
+print ("Opened database successfully")
 c = conn.cursor()
 c.execute('''CREATE TABLE PEOPLE
        (ID          CHAR(10) PRIMARY KEY     NOT NULL,
@@ -35,6 +35,6 @@ c.execute('''CREATE TABLE PEOPLETOCLASS(
 
 );''')
 
-print "Table created successfully"
+print ("Table created successfully")
 conn.commit()
 conn.close()

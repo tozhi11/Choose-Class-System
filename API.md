@@ -227,7 +227,7 @@ method错误 4
 账号:peopleID
 密码:passwd
 院系:college
-身份:position(老师 = 0，学生 = 1)
+身份:position(老师 = 1，学生 = 2)
 入学时间:admissionYear / 科目:classID
 电话 telephone
 
