@@ -1,79 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>大学生选课系统</title>
 	<link rel="stylesheet" href="../style/main.css">
 	<link rel="stylesheet" href="../style/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
 </head>
+
 <body>
 	<header>
 		<div class="header-left">
 			<h2>选课系统</h2>
 		</div>
-		<div class="header-right">
-			
+		<div id="header-right" class="header-right">
+			<p></p>
+			<a href="login.html" id="user-exit">
+				<ion-icon name="exit"></ion-icon>
+			</a>
 		</div>
 	</header>
 	<div id="body-wrapper" class="body-wrapper">
 		<div id="list-wrapper" class="list-wrapper">
-			<ul id="list-box"></ul>
+			<ul id="list-box">
+				<li id="update-permission" class="list-title">更新人员权限</li>
+				<li id="update-course" class="list-title">更新课程信息</li>
+				<li id="delete-course" class="list-title">删除课程</li>
+				<li id="delete-stu" class="list-title">删除学生</li>
+			</ul>
 		</div>
-		<div id="main-wrapper" class="main-wrapper"></div>
+		<div id="main-wrapper" class="main-wrapper">
+			<div class="update-permission">
+				更新人员权限
+			</div>
+			<!-- update-permission结束 -->
+			<div class="update-course">
+				更新课程信息
+			</div>
+			<!-- update-course结束 -->
+			<div class="delete-course">
+				删除课程
+			</div>
+			<!-- delete-course结束 -->
+			<div class="delete-stu">
+				删除学生
+			</div>
+			<!-- delete-stu结束 -->
+		</div>
 	</div>
-	
 
+	<script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+	<script src="../script/nav.js"></script>
 	<script src="../script/main.js"></script>
-	<script src="../script/global.js"></script>
-	<script>
-	let listBox = document.querySelector("#list-box");
-	let adminButtonList = ['管理人员档案', '设置人员权限'];
-	let storage = window.localStorage;
-	let isLogin = storage["isLogin"];
-	let userID = storage["userID"];
-	let position = storage["position"];
-
-	
-	window.onload = function() {
-		if(!isLogin) {
-			window.location.href = "login.html";
-		}
-		for(var i = 0; i< officerButtonList.length; i++) {
-			var li = document.createElement("li");
-			li.innerHTML = adminButtonList[i];
-			listBox.appendChild(li);
-		}
-	}
-		
-	function getUserStatus() {
-		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Student/Status";
-	}
-
-
-	listBox.addEventListener("mouseover", function(e) {
-		var e = e || window.event;
-		var target = e.target || e.srcElement;
-		if(target.nodeName.toLowerCase() === 'li') {
-				target.classList.add("li-active");
-		}
-	});
-
-	listBox.addEventListener("mouseout", function(e) {
-		var e = e || window.event;
-		var target = e.target || e.srcElement;
-		if(target.nodeName.toLowerCase() === 'li') {
-				target.classList.remove("li-active");
-		}
-	});
-
-	listBox.addEventListener("click", function(e) {
-		var e = e || e.window.event;
-		var target = e.target || e.srcElement;
-		if(target.nodeName.toLowerCase() === 'li') {
-			target.classList.add("li-active");
-		}
-	});
-
-	</script>
+	<script src="../script/admin-main.js"></script>
 </body>
+
 </html>

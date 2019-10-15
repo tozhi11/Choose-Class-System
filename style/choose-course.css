@@ -19,6 +19,7 @@
 	flex-flow: row wrap;
 	align-items: center;
 	justify-content: center;
+	overflow: auto;
 }
 
 .select-course-nav input[type="text"] {
@@ -87,8 +88,13 @@
 	background-color: #e3fdfd;
 }*/
 
-.select-course-main tr:nth-child(odd),
-.check-course tr:nth-child(odd) {
+.select-course-main th,
+.check-course th {
+	background-color: #e3fdfd;
+}
+
+.select-course-main tr:nth-child(even),
+.check-course tr:nth-child(even) {
 	background-color: #e3fdfd;
 	border: 1px solid #fff;
 }

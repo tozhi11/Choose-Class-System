@@ -5,8 +5,10 @@
 	<title>大学生选课系统</title>
 	<link rel="stylesheet" href="../style/choose-course.css">
 	<link rel="stylesheet" href="../style/check-course.css">
+	<!-- <link rel="stylesheet" href="../style/view-info.css"> -->
 	<link rel="stylesheet" href="../style/main.css">
 	<link rel="stylesheet" href="../style/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
 	<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
 </head>
 <body>
@@ -15,15 +17,18 @@
 			<h2>选课系统</h2>
 		</div>
 		<div id="header-right" class="header-right">
-			<a href="login.html" id="user-exit"><ion-icon name="exit"></ion-icon></a>
+			<p></p>
+			<a href="login.html" id="user-exit">
+				<ion-icon name="exit"></ion-icon>
+			</a>
 		</div>
 	</header>
-	<div" class="body-wrapper">
+	<div class="body-wrapper">
 		<div class="list-wrapper">
 			<ul id="list-box">
 				<li id="select-course" class="list-title">选课</li>
 				<li id="check-course" class="list-title">查看选课情况及退选</li>
-				<li id="view-info" class="list-title">查看个人信息</li>
+				<!-- <li id="view-info" class="list-title">查看个人信息</li> -->
 			</ul>
 		</div>
 		<div class="main-wrapper">
@@ -49,25 +54,11 @@
 								<th>详情</th>
 							</tr>
 						</thead>
-						<tbody></tbody>
+						<tbody id="select-main"></tbody>
 					</table>
 				</div>
 				<!-- select-course-main结束 -->
-				<div id="class-detail" class="class-detail">
-					<div class="close-detail">
-						<ion-icon id="close" name="close"></ion-icon>
-					</div>
-					<div id="class-comments" class="class-comments">
-						<p></p>
-					</div>
-					<div class="detail-info">
-						<ul id="detail-box" class="detail-box">
-							<li class="detail-item"></li>
-							<li class="detail-item"></li>
-						</ul>
-					</div>
-				</div>
-				<!-- class-detail结束 -->
+				
 			</div>
 			<!-- select-course结束 -->
 
@@ -84,11 +75,37 @@
 								<th>详情</th>
 							</tr>
 						</thead>
-						<tbody></tbody>
-					</table>
+						<tbody id="check-main"></tbody>
+				</table>
 			</div>
+			<!-- check-course结束 -->
 
-			<div class="view-personal-info"></div>
+			<!-- <div class="view-personal-info">
+				<ul class="info-box">
+					<li class="info-items">学号: <input type="text"></li>
+					<li class="info-items">姓名: <input type="text"></li>
+					<li class="info-items">专业: <input type="text"></li>
+					<li class="info-items">入学时间: <input type="text"></li>
+					<li class="info-items">电话: <input type="text"></li>
+				</ul>
+			</div>
+			view-personal-info结束 -->
+			
+			<div id="class-detail" class="class-detail">
+					<div class="close-detail">
+						<ion-icon id="close" name="close"></ion-icon>
+					</div>
+					<div id="class-comments" class="class-comments">
+						<p></p>
+					</div>
+					<div class="detail-info">
+						<ul id="detail-box" class="detail-box">
+							<li class="detail-item"></li>
+							<li class="detail-item"></li>
+						</ul>
+					</div>
+			</div>
+				<!-- class-detail结束 -->
 			<!-- check-course结束 -->
 		</div>
 		<!-- main-wrapper结束 -->
@@ -96,9 +113,11 @@
 	<!-- body-wrapper结束 -->
 
 	<script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
-	
+	<script src="../script/nav.js"></script>
 	<script src="../script/main.js"></script>
+	<script src="../script/student-main.js"></script>
 	<script src="../script/checkCourse.js"></script>
 	<script src="../script/selectCourse.js"></script>
+	<!-- <script src="../script/view-info.js"></script> -->
 </body>
 </html>

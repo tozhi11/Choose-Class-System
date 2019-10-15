@@ -9,8 +9,6 @@ let flag = 0;
 //刚打开网页的时候使焦点置于输入框中
 window.onload = setFocus(userName);
 
-console.log(window.localStorage["isLogin"]);
-
 //监听提交按钮
 userSubmit.addEventListener("click", function(e) {
 	var e = e || window.event;
@@ -39,7 +37,6 @@ function showMsg(str) {
 function setFocus(input) {
 	input.focus();
 }
-
 
 //提交用户登录信息
 function postUser(name, password) {
