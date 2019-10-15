@@ -45,10 +45,7 @@ status:
 class(json数组):
 classID:
 className:
-<!-- classTime: -->
-<!-- classAddress: -->
 teacher:
-<!-- comments: -->
 count:
 point:
 score:
