@@ -146,7 +146,7 @@ status:
 method错误 3
 
 ## 教师更新课程信息
-/api/Teacher/UpdataClass
+/api/Teacher/UpdateClass
 ### request:
 教师编号:peopleID
 课程编号:classID
@@ -181,7 +181,7 @@ method错误 3
 
 
 ## 管理员更新课程
-/api/Manager/UpdataClass
+/api/Manager/UpdateClass
 ### request:
 教师编号:peopleID
 课程编号:classID
@@ -221,7 +221,7 @@ method错误 4
 ### request:
 学生编号
 
-### respones:
+### response:
 删除成功 0
 登录失败 1
 不存在当前学生 2
@@ -234,7 +234,7 @@ method错误 4
 ### request:
 姓名:peopleName
 账号:peopleID
-密码:passwd
+密码:password
 院系:college
 身份:position(老师 = 1，学生 = 2)
 入学时间:admissionYear / 科目:classID
@@ -283,7 +283,7 @@ status:
 
 ### request
 学生编号:peopleID
-新密码:passwd
+新密码:password
 
 ### response
 status:
