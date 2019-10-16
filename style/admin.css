@@ -1,5 +1,7 @@
-.add-course,
-.update-course {
+.update-permission,
+.update-course,
+.delete-course,
+.delete-stu {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -9,23 +11,29 @@
   font-size: 14px;
 }
 
-.add-course-box,
-.update-course-box {
+.set-power-box,
+.update-course-box,
+.delete-course-box,
+.delete-stu-box {
   list-style-type: none;
   margin: 0;
   padding: 0;
   text-align: left;
 }
 
-.add-course-items,
-.update-course-items {
+.set-power-items,
+.update-course-items,
+.delete-course-items,
+.delete-stu-items {
   position: relative;
   list-style-type: none;
   margin: 20px 0;
 }
 
-.add-course-title,
-.update-course-title {
+.set-power-title,
+.update-course-title,
+.delete-course-title,
+.delete-stu-title {
   display: inline-block;
   width: 100px;
 }
@@ -38,7 +46,7 @@
 }
 
 input[type="text"],
-input[type="password"],
+select,
 input[type="submit"] {
   box-sizing: border-box;
   width: 300px;
@@ -51,8 +59,7 @@ input[type="submit"] {
   outline: none;
 }
 
-.add-course-items input[type="submit"],
-.update-course-items input[type="submit"] {
+input[type="submit"] {
   height: 30px;
   background-color: #00adb5;
   border: 1px solid #00adb5;
@@ -60,8 +67,7 @@ input[type="submit"] {
   color: #fff;
 }
 
-.add-course-items textarea,
-.update-course-items textarea{
+textarea {
   box-sizing: border-box;
   width: 300px;
   padding: 5px 10px;
@@ -71,21 +77,15 @@ input[type="submit"] {
   resize: none;
 }
 
-.add-course-items a,
-.update-course-items a {
-  position: relative;
-  top: 5px;
-  font-size: 12px;
-  color: #333;
-}
-
 input:focus,
 textarea:focus {
   outline: none;
-  border: 1px solid #fff;
   box-shadow: 0 0 5px #00adb5;
 }
 
+.power-info,
+.delete-stu-info,
+.delete-course-info,
 .class-info {
   color: red;
   font-size: 14px;

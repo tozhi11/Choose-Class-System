@@ -1,5 +1,4 @@
-updateCourseBox.addEventListener("input", checkInfo);
-addCourseBox.addEventListener("input", checkInfo);
+
 
 function checkInfo(e) {
   var e = e || window.event;
@@ -15,10 +14,6 @@ function checkInfo(e) {
     }
   }
 }
-
-//提交
-updateCourseSubmit.addEventListener("click", submitInfo);
-addCourseSubmit.addEventListener("click",submitInfo);
 
 function submitInfo(e) {
   var e = e || window.event;

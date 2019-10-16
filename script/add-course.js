@@ -9,6 +9,11 @@ var cComment = document.querySelector("#c-comment");
 var classInfo = document.querySelector("#class-info");
 var p = classInfo.querySelector("p");
 
+addCourseBox.addEventListener("input", checkInfo);
+
+//提交
+addCourseSubmit.addEventListener("click", submitInfo);
+
 //上传新课程
 function postNewClass(className, classTime, classAddress, classPeople, classCredit, classComment) {
   var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Teacher/AddClass";

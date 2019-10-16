@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>大学生选课系统</title>
+	<link rel="stylesheet" href="../style/admin.css">
 	<link rel="stylesheet" href="../style/main.css">
 	<link rel="stylesheet" href="../style/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
@@ -24,7 +25,7 @@
 	<div id="body-wrapper" class="body-wrapper">
 		<div id="list-wrapper" class="list-wrapper">
 			<ul id="list-box">
-				<li id="update-permission" class="list-title">更新人员权限</li>
+				<li id="update-permission" class="list-title">修改人员权限</li>
 				<li id="update-course" class="list-title">更新课程信息</li>
 				<li id="delete-course" class="list-title">删除课程</li>
 				<li id="delete-stu" class="list-title">删除学生</li>
@@ -32,19 +33,99 @@
 		</div>
 		<div id="main-wrapper" class="main-wrapper">
 			<div class="update-permission">
-				更新人员权限
+				<ul id="set-power-box" class="set-power-box">
+					<li id="set-power-items" class="set-power-items">
+						<span class="set-power-title">学号/职工号:</span>
+						<input type="text" id="set-power-id">
+						<span class="info"></span>
+					</li>
+					<li id="set-power-items" class="set-power-items">
+						<span class="set-power-title">修改权限为:</span>
+						<select name="change-power" id="change-power">
+							<option value="admin">管理员</option>
+							<option value="teacher">教师</option>
+							<option value="student">学生</option>
+						</select>
+						<span class="info"></span>
+					</li>
+					<li id="set-power-items" class="set-power-items">
+						<input type="submit" id="change-power-submit">
+					</li>
+				</ul>
+				<div id="power-info" class="power-info"></div>
 			</div>
 			<!-- update-permission结束 -->
 			<div class="update-course">
-				更新课程信息
+				<ul id="update-course-box" class="update-course-box">
+					<li class="update-course-items">
+						<span class="update-course-title">课程编码:</span>
+						<input type="text" id="uc-id">
+						<span class="info"></span>
+					</li>
+					<li class="update-course-items">
+						<span class="update-course-title">课程名称:</span>
+						<input type="text" id="uc-name">
+						<span class="info"></span>
+					</li>
+					<li class="update-course-items">
+						<span class="update-course-title">上课时间:</span>
+						<input type="text" id="uc-time">
+						<span class="info"></span>
+					</li>
+					<li class="update-course-items">
+						<span class="update-course-title">上课地点:</span>
+						<input type="text" id="uc-address">
+						<span class="info"></span>
+					</li>
+					<li class="update-course-items">
+						<span class="update-course-title">选课人数:</span>
+						<input type="text" id="uc-people">
+						<span class="info"></span>
+					</li>
+					<li class="update-course-items">
+						<span class="update-course-title">学分:</span>
+						<input type="text" id="uc-credit">
+						<span class="info"></span>
+					</li>
+					<li class="update-course-items">
+						<span class="update-course-title">简介:</span>
+						<textarea name="comment" id="uc-comment" cols="30" rows="10"></textarea>
+						<span class="info"></span>
+					</li>
+					<li class="update-course-items">
+						<input type="submit" id="update-course-submit" value="提交">
+					</li>
+				</ul>
+				<div id="uclass-info" class="class-info">
+				</div>
 			</div>
 			<!-- update-course结束 -->
 			<div class="delete-course">
-				删除课程
+				<ul id="delete-course-box" class="delete-course-box">
+					<li id="delete-course-items" class="delete-course-items">
+						<span class="delete-course-title">课程编号:</span>
+						<input type="text" id="delete-course-id">
+						<span class="info"></span>
+					</li>
+					<li id="delete-course-items" class="delete-course-items">
+						<input type="submit" id="delete-course-submit" value="提交">
+					</li>
+				</ul>
+				<div id="delete-course-info" class="delete-course-info"></div>
 			</div>
 			<!-- delete-course结束 -->
 			<div class="delete-stu">
-				删除学生
+				<ul id="delete-stu-box" class="delete-stu-box">
+					<li id="delete-stu-items" class="delete-stu-items">
+						<span class="delete-stu-title">学号:</span>
+						<input type="text" id="delete-stu-id">
+						<span class="info"></span>
+					</li>
+					<li id="delete-stu-items" class="delete-stu-items">
+						<input type="submit" id="delete-stu-submit" value="提交">
+					</li>
+				</ul>
+				<div id="delete-stu-info" class="delete-stu-info"></div>
 			</div>
 			<!-- delete-stu结束 -->
 		</div>
@@ -53,7 +134,11 @@
 	<script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
 	<script src="../script/nav.js"></script>
 	<script src="../script/main.js"></script>
-	<script src="../script/admin-main.js"></script>
+	<script src="../script/delete-stu.js"></script>
+	<script src="../script/delete-class.js"></script>
+	<script src="../script/set-power.js"></script>
+	<script src="../script/teacher-main.js"></script>
+	<script src="../script/update-class.js"></script>
 </body>
 
 </html>

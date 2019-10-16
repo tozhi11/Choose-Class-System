@@ -165,7 +165,7 @@ status:
 method错误 3
 
 
-## 管理员更新权限
+## 管理员修改权限
 /api/Manager/SetPower
 ### request:
 管理员编号:rootID
@@ -228,7 +228,7 @@ method错误 4
 没有删除权限 3
 method错误 4
 
-## 注册(做一个选项?老师和学生的权限不一样)
+## 注册
 /api/SignUp
 
 ### request:

@@ -1,7 +1,11 @@
 var updateCourseSubmit = document.querySelector("#update-course-submit");
 var updateCourseBox = document.querySelector("#update-course-box");
-var uClassInfo = document.querySelector("#uclass-info");
-var uP = uClassInfo.querySelector("p");
+var updateInfo = document.querySelector("#uclass-info");
+
+updateCourseBox.addEventListener("input", checkInfo);
+
+//提交
+updateCourseSubmit.addEventListener("click", submitInfo);
 
 //上传新课程
 function postUpdateClass(classID, className, classTime, classAddress, classPeople, classCredit, classComment) {
@@ -26,16 +30,16 @@ function postUpdateClass(classID, className, classTime, classAddress, classPeopl
       var resultObj = eval('(' + resultStr + ')');
       switch (resultObj.status) {
         case "0":
-          uP.innerHTML = "添加成功";
+          updateInfo.innerHTML = "添加成功";
           break;
         case "1":
-          uP.innerHTML = "登录失败";
+          updateInfo.innerHTML = "登录失败";
           break;
         case "2":
-          uP.innerHTML = "已存在当前课程";
+          updateInfo.innerHTML = "已存在当前课程";
           break;
         case "3":
-          uP.innerHTML = "method错误";
+          updateInfo.innerHTML = "method错误";
           break;
       }
     }

@@ -47,7 +47,7 @@ listBox.addEventListener("click", function(e) {
 					document.querySelector(".delete-stu").setAttribute("style", "display: none");
 				}
 				break;
-			case "更新人员权限":
+			case "修改人员权限":
 				
 				document.querySelector(".update-permission").removeAttribute("style");
 				document.querySelector(".update-course").setAttribute("style", "display: none");
