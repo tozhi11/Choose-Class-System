@@ -26,10 +26,10 @@ status:
 登录失败 返回1
 教师不存在 返回2
 method错误 返回3
-教工号 peopleID
-姓名 name
-电话 telephone
-课程 course
+教工号: peopleID
+姓名: name
+电话: telephone
+课程: course
 
 ## 查看课程状态
 /api/Class
@@ -42,16 +42,25 @@ status:
 方法错误 2
 
 课程信息
-class(是个json数组):
+class(json数组):
 classID:
 className:
-classTime:
-address:
 teacher:
-comments:
 count:
 point:
 score:
+
+## 查看课程具体信息
+/api/Class/detail
+
+### request: 
+课程编号 classID
+
+### response:
+课程信息class(json数组)
+classTime: 上课时间
+classAddress: 上课地点
+comments: 课程简介
 
 ## 选课API
 /api/Student/ChooseClass
@@ -91,11 +100,11 @@ status:
 登录成功:0
 登录失败:1
 method错误 2
-class(是个json数组):
+class(json数组):
 classID:
 className:
 classTime:
-address:
+classAddress:
 teacher:
 comments:
 count:
@@ -137,7 +146,7 @@ status:
 method错误 3
 
 ## 教师更新课程信息
-/api/Teacher/UpdataClass
+/api/Teacher/UpdateClass
 ### request:
 教师编号:peopleID
 课程编号:classID
@@ -156,7 +165,7 @@ status:
 method错误 3
 
 
-## 管理员更新权限
+## 管理员修改权限
 /api/Manager/SetPower
 ### request:
 管理员编号:rootID
@@ -172,7 +181,7 @@ method错误 3
 
 
 ## 管理员更新课程
-/api/Manager/UpdataClass
+/api/Manager/UpdateClass
 ### request:
 教师编号:peopleID
 课程编号:classID
@@ -181,7 +190,7 @@ method错误 3
 上课地点:classAddress
 选课人数:count
 学分:classPoint
-分数:score
+课程评分:score
 描述:comments
 
 ### response:
@@ -212,20 +221,20 @@ method错误 4
 ### request:
 学生编号
 
-### respones:
+### response:
 删除成功 0
 登录失败 1
 不存在当前学生 2
 没有删除权限 3
 method错误 4
 
-## 注册(做一个选项?老师和学生的权限不一样)
+## 注册
 /api/SignUp
 
 ### request:
 姓名:peopleName
 账号:peopleID
-密码:passwd
+密码:password
 院系:college
 身份:position(老师 = 1，学生 = 2)
 入学时间:admissionYear / 科目:classID
@@ -274,7 +283,7 @@ status:
 
 ### request
 学生编号:peopleID
-新密码:passwd
+新密码:password
 
 ### response
 status:

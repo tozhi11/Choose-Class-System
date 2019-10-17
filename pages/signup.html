@@ -3,71 +3,71 @@
 <head>
 	<meta charset="UTF-8">
 	<title>大学生选课系统</title>
+	<link rel="stylesheet" href="../style/signup.css">
+	<link rel="stylesheet" href="../style/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div class="sign-up-wrapper">
-		<form action="/api/SignUp" id="sign-up-box">
-			<div class="check-box">
-				<input type="radio" name="position" value="teacher">老师
-				<input type="radio" name="position" value="student">学生
-			</div>
-			<ul>
-				<li>
-					<p>姓名</p>
-					<input type="text" id="people-name">
+		<!-- <form id="signup" action=""" method="POST"> -->
+			<ul class="signup-box">
+				<li><h1>学生选课系统</h1></li>
+				<li class="signup-items radio-items">
+					<input type="radio" name="position" value="student" class="radio-type">
+					<span>学生</span>
+					<input type="radio" name="position" value="teacher" class="radio-type">
+					<span>老师</span>
+					<span id="position-info" class="info"></span>
 				</li>
-				<li>
-					<p>学号/教工号</p>
-					<input type="text" id="people-id">
+				<li class="signup-items">
+					<span class="signup-title">姓名:</span><input type="text" id="people-name">
+					<span id="name-info" class="info"></span>
 				</li>
-				<li>
-					<p>密码</p>
-					<input type="password" id="passwd">
+				<li class="signup-items">
+					<span class="signup-title">学号/教工号:</span><input type="text" id="people-id">
+					<span id="id-info" class="info"></span>
 				</li>
-				<li>
-					<p>确认密码</p>
-					<input type="password" id="recheck-pwd">
+				<li class="signup-items">
+					<span class="signup-title">密码:</span><input type="password" id="passwd">
+					<span id="pwd-info" class="info"></span>
 				</li>
-				<li>
-					<p>入学时间</p>
+				<li class="signup-items">
+					<span class="signup-title">确认密码:</span><input type="password" id="recheck-pwd">
+					<span id="repwd-info" class="info pwd-info"></span>
+				</li>
+				<li class="signup-items">
+					<span class="signup-title">入学时间:</span>
 					<select name="admissionYear" id="admission-year">
+						<option value="2019">2019</option>
+						<option value="2018">2018</option>
+						<option value="2017">2017</option>
+						<option value="2016">2016</option>
 					</select>
 				</li>
-				<li>
-					<p>院系</p>
+				<li class="signup-items">
+					<span class="signup-title">院系:</span>
 					<select name="college" id="college">
-						<option value=""></option>
-						<option value=""></option>
-						<option value=""></option>
-						<option value=""></option>
-						<option value=""></option>
-						<option value=""></option>
+						<option value="">计算机科学与技术学院</option>
+						<option value="">机械科学与工程学院</option>
+						<option value="">光学与电子信息学院</option>
+						<option value="">生命科学与技术学院</option>
+						<option value="">经济学院</option>
+						<option value="">社会学院</option>
 					</select>
 				</li>
-				<li>
-					<p>电话</p>
+				<li class="signup-items">
+					<span class="signup-title">手机号:</span>
 					<input type="text" id="telephone">
+					<span id="tel-info" class="info"></span>
 				</li>
-				<li><input type="submit" id="sign-up-submit"></li>
+				<li class="signup-items">
+					<input type="submit" id="sign-up-submit">
+					<a href="./login.html"><span>已有账号？点击登录</span></a>
+				</li>
 			</ul>
-		</form>
+		<!-- </form> -->
 	</div>
 
-	<script>
-	var collegeArr = []
-	var peopleName = document.querySelector("#people-name");
-	var peopleID = document.querySelector("#people-id");
-	var pwd = document.querySelectorAll("input[type='password']");
-	var admissionYear = document.querySelector("#admission-year");
-	var college = document.querySelector("#college");
-	var date = new Date();
-	var year = null;
-	for(var i = 0; i < 4; i++) {
-		year = date.getFullYear() - i;
-		var option = document.createElement("option");
-		option.innerHTML = year;
-		admissionYear.appendChild(option);
-	}
-	</script>
+	<script src="../script/signup.js"></script>
 </body>
 </html>

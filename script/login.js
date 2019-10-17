@@ -6,10 +6,10 @@ let userSubmit = document.querySelector("#user-submit");
 let checkMsg = document.querySelector("#check-msg");
 let flag = 0;
 
+//刚打开网页的时候使焦点置于输入框中
 window.onload = setFocus(userName);
 
-console.log(window.localStorage["isLogin"]);
-
+//监听提交按钮
 userSubmit.addEventListener("click", function(e) {
 	var e = e || window.event;
 	var target = e.target || e.srcElement;
@@ -27,15 +27,18 @@ userSubmit.addEventListener("click", function(e) {
 });
 
 
+//提示信息
 function showMsg(str) {
 	checkMsg.innerHTML = str;
 	checkMsg.classList.add("msg");
 }
 
+
 function setFocus(input) {
 	input.focus();
 }
 
+//提交用户登录信息
 function postUser(name, password) {
 	var url = 'https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/login';
 	var requestString = "username=" + name + "&password=" + password;

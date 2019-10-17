@@ -1,6 +1,8 @@
 html, body{
 	width: 100%;
 	height: 100%;
+	overflow: auto;
+	font-family: 'Noto Serif SC',	serif;
 }
 
 header {
@@ -9,7 +11,7 @@ header {
 	height: 70px;
 	overflow: hidden;
 	color: #fff;
-	background-color: #555;
+	background-color: #393e46;
 }
 
 .header-left {
@@ -53,8 +55,17 @@ header {
 .list-wrapper {
 	width: 250px;
 	height: 100%;
-	background-color: #60acfc;
-	color: #fff;
+	border-right: 1px solid #ccc;
+	color: #00adb5;
+	box-shadow: 10px 10px 10px #eee;
+}
+
+.main-wrapper {
+	box-sizing: border-box;
+	height: 100%;
+	flex: 1 1 200px;
+	padding: 20px;
+	overflow: auto;
 }
 
 .list-wrapper ul {
@@ -70,12 +81,12 @@ header {
 }
 
 .list-wrapper ul li {
-	flex: 70px;
-	line-height: 70px;
+	flex: 50px;
+	line-height: 50px;
 }
 
-li:hover,
+.list-title:hover,
 .li-active {
-	background-color: #fff;
-	color: #000;
+	background-color: #00adb5;
+	color: #fff;
 }

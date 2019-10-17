@@ -1,0 +1,149 @@
+.select-course {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow: auto;
+}
+
+.select-course-nav {
+	flex: 0 0 70px;
+	width: 100%;
+	height: 70px;
+	line-height: 70px;
+	align-items: center;
+}
+
+.select-course-nav form {
+	height: 40px;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+	overflow: auto;
+}
+
+.select-course-nav input[type="text"] {
+	box-sizing: border-box;
+	width: 250px;
+	height: 30px;
+	margin: 5px 20px;
+	padding: 0 5px;
+	border: 1px solid #ccc;
+	color: #333;
+	font-size: 14px;
+	outline: none;
+}
+
+.select-course-nav input[type="submit"] {
+	width: 100px;
+	height: 30px;
+	background-color: #00adb5;
+	border: 1px solid #00adb5;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 14px;
+}
+
+.select-course-main {
+	flex: 1 1 auto;
+	margin: 0 auto;
+	overflow: auto;
+}
+
+.select-course-main::-webkit-scrollbar {
+	display: none;
+}
+
+.select-course-main table,
+.check-course table {
+	border-collapse: collapse;
+	font-size: 14px;
+}
+
+.select-course-main th,
+.check-course th {
+	font-weight: 600;
+}
+
+.select-course-main th,td,
+.check-course th,td {
+	width: 150px;
+	height: 30px;
+	border: 1px solid #eee;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+.select-course-main button,
+.check-course button {
+	background-color: #00adb5;
+	border: 1px solid #00adb5;
+	margin-right: 5px;
+	font-size: 12px;
+	color: #fff;
+	cursor: pointer;
+}
+
+/*.select-course-main tr:hover {
+	background-color: #e3fdfd;
+}*/
+
+.select-course-main th,
+.check-course th {
+	background-color: #e3fdfd;
+}
+
+.select-course-main tr:nth-child(even),
+.check-course tr:nth-child(even) {
+	background-color: #e3fdfd;
+	border: 1px solid #fff;
+}
+
+.class-detail {
+	position: absolute;
+	top: 20%;
+	left: 35%;
+	display: none;
+	box-sizing: border-box;
+	flex-direction: row;
+	width: 640px;
+	height: 420px;
+	margin: 0 auto;
+	padding: 50px;
+	border: 2px solid #00adb5;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.close-detail {
+	position: absolute;
+	right:5px;
+	top: 5px;
+	font-size: 35px;
+	color: #00adb5;
+}
+
+.class-comments {
+	box-sizing: border-box;
+	width: 300px;
+	height: 300px;
+	padding: 20px;
+	border: 1.5px solid #00adb5;
+	border-radius: 5px;
+	overflow: auto;
+}
+
+.class-comments::-webkit-scrollbar {
+	display: none;
+}
+
+.class-comments p{
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.detail-item {
+	list-style: none;
+	font-size: 16px;
+	line-height: 30px;
+}

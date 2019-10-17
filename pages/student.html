@@ -3,8 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>大学生选课系统</title>
+	<link rel="stylesheet" href="../style/choose-course.css">
+	<link rel="stylesheet" href="../style/check-course.css">
+	<!-- <link rel="stylesheet" href="../style/view-info.css"> -->
 	<link rel="stylesheet" href="../style/main.css">
 	<link rel="stylesheet" href="../style/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
 	<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
 </head>
 <body>
@@ -13,103 +17,107 @@
 			<h2>选课系统</h2>
 		</div>
 		<div id="header-right" class="header-right">
-			<a href="login.html" id="user-exit"><ion-icon name="exit"></ion-icon></a>
+			<p></p>
+			<a href="login.html" id="user-exit">
+				<ion-icon name="exit"></ion-icon>
+			</a>
 		</div>
 	</header>
-	<div id="body-wrapper" class="body-wrapper">
-		<div id="list-wrapper" class="list-wrapper">
-			<ul id="list-box"></ul>
+	<div class="body-wrapper">
+		<div class="list-wrapper">
+			<ul id="list-box">
+				<li id="select-course" class="list-title">选课</li>
+				<li id="check-course" class="list-title">查看选课情况及退选</li>
+				<!-- <li id="view-info" class="list-title">查看个人信息</li> -->
+			</ul>
 		</div>
-		<div id="main-wrapper" class="main-wrapper"></div>
+		<div class="main-wrapper">
+			<div class="select-course">
+				<div class="select-course-nav">
+					<form action="" id="search-course">
+						<input type="text" placeholder="按课程名称查找" id="search-by-course">
+						<input type="text" placeholder="按教师名称查找" id="search-by-teacher">
+						<input type="submit" value="搜索">
+					</form>
+				</div>
+				<!-- select-course-nav结束 -->
+				<div class="select-course-main">
+					<table>
+						<thead>
+							<tr>
+								<th>课程编码</th>
+								<th>评分</th>
+								<th>课程名称</th>
+								<th>任课教师</th>
+								<th>学分</th>
+								<th>课程已选人数</th>
+								<th>详情</th>
+							</tr>
+						</thead>
+						<tbody id="select-main"></tbody>
+					</table>
+				</div>
+				<!-- select-course-main结束 -->
+				
+			</div>
+			<!-- select-course结束 -->
+
+			<div class="check-course">
+				<table>
+						<thead>
+							<tr>
+								<th>课程编码</th>
+								<th>评分</th>
+								<th>课程名称</th>
+								<th>任课教师</th>
+								<th>学分</th>
+								<th>课程已选人数</th>
+								<th>详情</th>
+							</tr>
+						</thead>
+						<tbody id="check-main"></tbody>
+				</table>
+			</div>
+			<!-- check-course结束 -->
+
+			<!-- <div class="view-personal-info">
+				<ul class="info-box">
+					<li class="info-items">学号: <input type="text"></li>
+					<li class="info-items">姓名: <input type="text"></li>
+					<li class="info-items">专业: <input type="text"></li>
+					<li class="info-items">入学时间: <input type="text"></li>
+					<li class="info-items">电话: <input type="text"></li>
+				</ul>
+			</div>
+			view-personal-info结束 -->
+			
+			<div id="class-detail" class="class-detail">
+					<div class="close-detail">
+						<ion-icon id="close" name="close"></ion-icon>
+					</div>
+					<div id="class-comments" class="class-comments">
+						<p></p>
+					</div>
+					<div class="detail-info">
+						<ul id="detail-box" class="detail-box">
+							<li class="detail-item"></li>
+							<li class="detail-item"></li>
+						</ul>
+					</div>
+			</div>
+				<!-- class-detail结束 -->
+			<!-- check-course结束 -->
+		</div>
+		<!-- main-wrapper结束 -->
 	</div>
-	
+	<!-- body-wrapper结束 -->
 
 	<script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+	<script src="../script/nav.js"></script>
 	<script src="../script/main.js"></script>
-	<script src="../script/global.js"></script>
-	<script>
-	let listBox = document.querySelector("#list-box");
-	let headerRight = document.querySelector("#header-right");
-	let exit = document.querySelector("#user-exit");
-	let stuButtonList = ['选课', '查看选课情况及退选'];
-	let storage = window.localStorage;
-	let isLogin = storage["isLogin"];
-	let userID = storage["userID"];
-	let position = storage["position"];
-
-	console.log(isLogin, userID, position);
-
-	window.onload = function() {
-		if(!isLogin) {
-			window.location.href = "login.html";
-		}
-		for(var i = 0; i < stuButtonList.length; i++) {
-			var li = document.createElement("li");
-			li.innerHTML = stuButtonList[i];
-			listBox.appendChild(li);
-		}
-		getUserStatus();
-	}
-	
-	function getUserStatus() {
-		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Student/Status";
-		var xhr = null;
-		if(window.XMLHttpRequest) {
-			xhr = new XMLHttpRequest();
-		} else {
-			xhr = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-
-		xhr.open("POST", url, true);
-		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhr.send(null);
-		xhr.onreadystatechange = function(e) {
-			var e = e || window.event;
-			var target = e.target || e.srcElement;
-			if(target.readyState === 4 && target.status === 200) {
-				var resultStr = target.responseText;
-				var resultObj = eval('(' + resultStr + ')');
-				renderStatus(resultObj);
-			}
-		}
-	}
-
-	function renderStatus(obj) {
-		console.log(obj);
-		var p = document.createElement("p");
-		p.innerHTML = "欢迎你！" + obj.name + "(" + obj.college + ", " + obj.admissionYear + "-" + (parseInt(obj.admissionYear) + 4) + ")" ;
-		headerRight.appendChild(p);
-	}
-
-	exit.addEventListener("click", function(e) {
-		localStorage.remove("isLogin");
-		localStorage.remove("userID");
-		localStorage.remove("position");
-	});
-
-	listBox.addEventListener("mouseover", function(e) {
-		var li = listBox.querySelectorAll("li");
-		var e = e || window.event;
-		var target = e.target || e.srcElement;
-		if(target.nodeName.toLowerCase() === 'li') {
-			if(target.classList.contains("li-active")) {
-				li.forEach(function(val, idx, arr) {
-					if(arr[idx].classList.contains("li-active")) {
-						arr[idx].classList.remove("li-active");
-					}
-				})
-			}
-		}
-	});
-
-	listBox.addEventListener("click", function(e) {
-		var e = e || e.window.event;
-		var target = e.target || e.srcElement;
-		if(target.nodeName.toLowerCase() === 'li') {
-			target.classList.add("li-active");
-		}
-	});
-
-	</script>
+	<script src="../script/student-main.js"></script>
+	<script src="../script/check-course.js"></script>
+	<script src="../script/select-course.js"></script>
+	<!-- <script src="../script/view-info.js"></script> -->
 </body>
 </html>
