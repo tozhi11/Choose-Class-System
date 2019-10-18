@@ -60,7 +60,8 @@ submit.addEventListener("click",function(e) {
 
 function postNewUser(userName, userID, password, admYear, clg, tel, userPosition) {
 
-  var url = "http://127.0.0.1:5000/api/SignUp";
+  // var url = "http://127.0.0.1:5000/api/SignUp";
+  var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/SignUp";
   var ajaxStr = "peopleName=" + userName 
                 + "&peopleID=" + userID 
                 + "&passwd=" + password 

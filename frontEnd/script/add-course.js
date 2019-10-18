@@ -20,7 +20,8 @@ addCourseSubmit.addEventListener("click", submitInfo);
 
 //上传新课程
 function postNewClass(className, classTime, classAddress, classPeople, classCredit, classComment) {
-  var url = "http://127.0.0.1:5000/api/Teacher/AddClass";
+  // var url = "http://127.0.0.1:5000/api/Teacher/AddClass";
+  var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Teacher/AddClass";
   var ajaxStr = "peopleID=" + userID 
                 + "&className=" + className 
                 + "&classTime=" + classTime 

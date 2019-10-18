@@ -37,11 +37,17 @@ window.onload = function() {
 //获取登录用户的信息
 function getUserStatus() {
 	var requsetstr = "peopleID=" + userID;
+	// if (POSITION === "0") {
+	// 	var url = "http://127.0.0.1:5000/api/Student/Status";
+	// } 
+	// else {
+	// 	var url = "http://127.0.0.1:5000/api/Teacher/Status";
+	// }
 	if (POSITION === "0") {
-		var url = "http://127.0.0.1:5000/api/Student/Status";
+		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Student/Status";
 	} 
 	else {
-		var url = "http://127.0.0.1:5000/api/Teacher/Status";
+		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Teacher/status";
 	}
 	var xhr = null;
 	if (window.XMLHttpRequest) {

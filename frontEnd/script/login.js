@@ -43,7 +43,8 @@ function setFocus(input) {
 
 //提交用户登录信息
 function postUser(name, password) {
-	var url = 'http://127.0.0.1:5000/api/login';
+	// var url = 'http://127.0.0.1:5000/api/login';
+	var url = 'https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/login';
 	var ajaxStr = "username=" + name + "&password=" + password;
 	var xhr = null;
 

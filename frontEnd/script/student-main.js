@@ -12,12 +12,19 @@ let checkTbody = document.querySelector("#check-main");
 //获取课程信息
 function getClassInfo(userID, flag) {
 	console.log(flag)
+	// if (flag) {
+	// 	var url = "http://127.0.0.1:5000/api/Student/ClassStatus";
+	// 	var ajaxStr = "peopleID=" + userID; 
+	// } 
+	// else {
+	// 	var url = "http://127.0.0.1:5000/api/Class";
+	// }
 	if (flag) {
-		var url = "http://127.0.0.1:5000/api/Student/ClassStatus";
+		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Student/ClassStatus";
 		var ajaxStr = "peopleID=" + userID; 
 	} 
 	else {
-		var url = "http://127.0.0.1:5000/api/Class";
+		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Class";
 		var ajaxStr = null;
 	}
 	var xhr = null;
@@ -63,7 +70,7 @@ function getAllClass(obj, flag) {
 	var len = obj.length;
 	console.log(len)
 	var td = new Array();
-	for(var i = 0; i < 5; i++) {
+	for(var i = 0; i < len; i++) {
 
 		td[i] = "<td>" + obj[i].classID + "</td>";
 		td[i] += "<td>" + changeToStar(obj[i].score) + "</td>";
