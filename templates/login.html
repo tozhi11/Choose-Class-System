@@ -1,21 +1,38 @@
-<!-- 模板的语法应当符合Jinja语法 -->
-<!-- extend from base layout -->
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>大学生选课系统</title>
+	<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../style/style.css">
+	<link rel="stylesheet" href="../sty	le/login.css">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div id="login-wrapper" class="login-wrapper">
+		<form id="user-login" action="http://127.0.0.1:5000/api/login" method="post">
+			<h1>学生选课系统</h1>
+			<div class="user-name-box">
+				<ion-icon name="contact"></ion-icon>
+				<input type="text" id="user-name" class="user-name" placeholder="学号/职工号">
+			</div>
 
-{% block content %}
-  <h1>Sign In</h1>
-  <form action="{{ url_for("login") }}" method="post" name="login">
-      {{ form.csrf_token }}
-      <p>
-          {{ form.username.label }}<br>
-          {{ form.username(size=80) }}<br>
-      </p>
-      <p>
-          {{ form.password.label }}<br>
-          <!-- 我们可以传递input标签的属性，这里传递的是size属性 -->
-          {{ form.password(size=80) }}<br>
-      </p>
-      <p>{{ form.remember_me }} Remember Me</p>
-      <p><input type="submit" value="Sign In"></p>
-  </form>
-{% endblock %}
+			<div class="user-pwd-box">
+				<ion-icon name="lock"></ion-icon>
+				<input type="password" id="user-pwd" class="user-pwd" placeholder="密码">
+			<div id="check-msg"></div>
+			<input type="button" id="user-submit" class="user-submit" value="登录">
+			</div>
+			<div class="text-wrapper">
+				<a href=""><p>修改密码</p></a>
+				<a href="../pages/signup.html"><P>注册</P></a>
+			</div>
+		</form>
+	</div>
+
+
+	<script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+	<!-- <script src="../script/userdata.json"></script> -->
+	<script src="../script/login.js"></script>
+</body>
+</html>

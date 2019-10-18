@@ -9,7 +9,8 @@ function checkInfo(e) {
     var infoText = e.path[1].querySelectorAll("span")[1];
     if (inputValue.length === 0) {
       infoText.innerHTML = nameText + "不能为空";
-    } else {
+    } 
+    else {
       infoText.innerHTML = "";
     }
   }
@@ -19,7 +20,7 @@ function submitInfo(e) {
   var e = e || window.event;
   var target = e.target || e.srcElement;
   var courseItems = e.path[2].querySelectorAll("li");
-  if( courseItems[0].classList.contains("update-course-items")) {
+   if (courseItems[0].classList.contains("update-course-items")) {
     var classID = courseItems[0].children[1].value.trim();
     var className =courseItems[1].children[1].value.trim();
     var classTime =courseItems[2].children[1].value.trim();
@@ -27,7 +28,8 @@ function submitInfo(e) {
     var classPeople = courseItems[4].children[1].value.trim();
     var classCredit = courseItems[5].children[1].value.trim();
     var classComment = courseItems[6].children[1].value.trim();
-  } else {
+  } 
+  else {
     var className = courseItems[0].children[1].value.trim();
     var classTime = courseItems[1].children[1].value.trim();
     var classAddress = courseItems[2].children[1].value.trim();
@@ -35,9 +37,14 @@ function submitInfo(e) {
     var classCredit = courseItems[4].children[1].value.trim();
     var classComment = courseItems[5].children[1].value.trim();
   }
-  if (checkInputValue(courseItems) && courseItems[0].classList.contains("add-course-items")) {
+  if (checkInputValue(courseItems) 
+      && courseItems[0].classList.contains("add-course-items")
+  ) {
     postNewClass(className, classTime, classAddress, classPeople, classCredit, classComment);
-  } else if(checkInputValue(courseItems) && courseItems[0].classList.contains("update-course-items")) {
+  }
+  else if (checkInputValue(courseItems) 
+    && courseItems[0].classList.contains("update-course-items")
+  ) {
     postUpdateClass(classID, className, classTime, classAddress, classPeople, classCredit, classComment);
   }
 }
@@ -62,7 +69,8 @@ function getWarnInfo(arr, idx) {
   if (inputValue.length === 0) {
     infoText.innerHTML = nameText + "不能为空";
     return false;
-  } else {
+  } 
+  else {
     infoText.innerHTML = "";
     return true;
   }

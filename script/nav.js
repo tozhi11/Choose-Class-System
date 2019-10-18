@@ -1,16 +1,20 @@
+/** 
+ * @namespace
+ */
 let headerRight = document.querySelector("#header-right");
 let exit = document.querySelector("#user-exit");
 let storage = window.localStorage;
 let isLogin = storage["isLogin"];
 let userID = storage["userID"];
-let position = storage["position"];
+let POSITION = storage["POSITION"];
 
+//页面加载时显示顶部和左侧导航栏
 window.onload = function() {
-	if(!isLogin) {
+	if (!isLogin) {
 		window.location.href = "login.html";
 	}
 	getUserStatus();
-	switch(position) {
+	switch(POSITION) {
 		case "0":
 			document.querySelector(".select-course").setAttribute("style", "display: none");
 			document.querySelector(".check-course").setAttribute("style", "display: none");
@@ -31,32 +35,35 @@ window.onload = function() {
 
 
 //获取登录用户的信息
-function getUserStatus() {	
-	if (position == 2) {
+function getUserStatus() {
+	var requsetstr = "peopleID=" + userID;
+	if (POSITION === "0") {
 		var url = "http://127.0.0.1:5000/api/Student/Status";
-	} else {
-		var url = "http://127.0.0.1:5000/api/Teacher/S	tatus";
+	} 
+	else {
+		var url = "http://127.0.0.1:5000/api/Teacher/Status";
 	}
 	var xhr = null;
-	if(window.XMLHttpRequest) {
+	if (window.XMLHttpRequest) {
 		xhr = new XMLHttpRequest();
-	} else {
+	} 
+	else {
 		xhr = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	var requestString = "peopleID=" + userID;
-	xhr.send(requestString);
+	xhr.send(requsetstr);
 	xhr.onreadystatechange = function(e) {
 		var e = e || window.event;
 		var target = e.target || e.srcElement;
-		if(target.readyState === 4 && target.status === 200) {
+		if (target.readyState === 4 && target.status === 200) {
 			var resultStr = target.responseText;
 			var resultObj = eval('(' + resultStr + ')');
-			if(position == 2) {
+			if (POSITION === "0") {
 				renderStatus(resultObj);
-			} else {
+			} 
+			else {
 				renderTeacherStatus(resultObj);
 			}
 			
@@ -67,12 +74,17 @@ function getUserStatus() {
 //渲染导航栏的欢迎信息
 function renderStatus(obj) {
 	var p = headerRight.querySelector("p");
-	p.innerHTML = "欢迎你！" + obj.name + "同学(" + obj.college + ", " + obj.admissionYear + "-" + (parseInt(obj.admissionYear) + 4) + ")" ;
+	p.innerHTML = "欢迎你！" + obj.name + "同学(" 
+								+ obj.college + ", " 
+								+ obj.admissionYear + "-" 
+								+ (parseInt(obj.admissionYear) + 4) 
+								+ ")";
 }
 
 function renderTeacherStatus(obj) {
 	var p = headerRight.querySelector("p");
-	p.innerHTML = "欢迎你！" + obj.name + "(" + obj.peopleID + ")";
+	p.innerHTML = "欢迎你！" + obj.name 
+								+ "(" + obj.peopleID + ")";
 }
 
 
@@ -85,23 +97,25 @@ exit.addEventListener("click", function(e) {
 });
 
 function logOut() {
-	var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/logout";
+	var url = "http://127.0.0.1:5000/api/logout";
 	var ajaxStr = null;
 	var xhr = null;
-	if(window.XMLHttpRequest) {
+	if (window.XMLHttpRequest) {
 		xhr = new XMLHttpRequest();
-	} else {
+	} 
+	else {
 		xhr = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	console.log(ajaxStr);
 	xhr.send(ajaxStr);
 
 	xhr.onreadystatechange = function(e) {
 		var e = e || window.event;
 		var target = e.target || e.srcElement;
-		if(target.readyState === 4 && target.status === 200) {
+		if (target.readyState === 4 && target.status === 200) {
 			var resultStr = target.responseText;
 			var resultObj = eval('(' + resultStr + ')');
 			switch(resultObj.status) {
