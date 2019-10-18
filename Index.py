@@ -1,5 +1,3 @@
-# 
-
 from flask import Flask, session, redirect, url_for, escape, request, render_template
 from flask import jsonify
 from flask_cors import *
@@ -15,6 +13,10 @@ CORS(app, supports_credentials=True)
 def index():
     return render_template("login.html")
 
+
+# /api/ChooseClass is used to choose Classes.
+# It's used by the student user.
+# Every Student can only choose two classes.
 @app.route('/api/ChooseClass',methods = ['GET', 'POST'])
 def ChooseClass():
     if request.method == 'POST':
@@ -41,6 +43,10 @@ def ChooseClass():
         return jsonify({'status':0})
     return jsonify({'status': '4'})
 
+
+# /api/Student/WithdrawClass is used to withdraw Classes.
+# It's used by the student user.
+# Every student only can withdraw the class he has chosen.
 @app.route('/api/Student/WithdrawClass',methods = ['GET', 'POST'])
 def WithdrawClass():
     if request.method == 'POST':
@@ -64,12 +70,11 @@ def WithdrawClass():
         return jsonify({'status': '2'})
     return jsonify({'status': '3'})
 
+# /api/Student/ClassStatus returns the classes the students has chosen.
 @app.route('/api/Student/ClassStatus',methods = ['GET', 'POST'])
 def StudentClassStatus():
     if request.method == 'POST':
-        # print("????")
         peopleID = request.form.get('peopleID')
-        # print(peopleID)
         # if session['username'] != peopleID or session['position']!= 2:
         #     return jsonify({'status': 1})
         order = 'SELECT * from PEOPLETOCLASS WHERE PEOPLEID = ' +peopleID
@@ -95,6 +100,9 @@ def StudentClassStatus():
         return jsonify({'status': '0', 'class':t})
     return jsonify({'status': '2'})
 
+
+# /api/Class/detail uses to return more details about the class.
+# The api will be called when the user click the button.
 @app.route('/api/Class/detail',methods = ['GET', 'POST'])
 def ClassDetail():
     if request.method == 'POST':
@@ -113,7 +121,7 @@ def ClassDetail():
                         'comments':       cur[0][5]})
     return jsonify({'status':'2'})    
 
-
+# Class returns all the classes in the database. 
 @app.route('/api/Class',methods = ['GET', 'POST'])
 def ClassStatus():
     if request.method == 'POST':
@@ -142,6 +150,7 @@ def ClassStatus():
         return jsonify({'status': '0', 'class':t})
     return jsonify({'status': '2'})
 
+# /api/Student/Status returns the student's status.
 @app.route('/api/Student/Status',methods = ['GET', 'POST'])
 def StudentStatus():
     if request.method == 'POST':
@@ -162,6 +171,7 @@ def StudentStatus():
         return jsonify({'status': '0','name':cur[0][2],'college':cur[0][5],'admissionYear':cur[0][6]})
     return jsonify({'status':'3'})
 
+# /api/Teacher/Status returns the teacher's status.
 @app.route('/api/Teacher/Status',methods = ['GET', 'POST'])
 def TeacherStatus():
     if request.method == 'POST':
@@ -178,8 +188,8 @@ def TeacherStatus():
         return jsonify({'status': '0','name':cur[0][2],'peopleID':cur[0][0]})
     return jsonify({'status':'3'})
 
-
-
+# /api/Teacher/AddClass help the teacher to add a new class.
+# It allows teacher add the same class. 
 @app.route('/api/Teacher/AddClass', methods = ['GET', 'POST'])
 def AddClass():
     if request.method == 'POST':
@@ -188,7 +198,6 @@ def AddClass():
         #     return jsonify({'status': 1})
         conn = sqlite3.connect('choose-class-system.db')
         c = conn.cursor()
-
         className = request.form.get('className')
         classTime = request.form.get('classTime')
         classAddress = request.form.get('classAddress')
@@ -199,12 +208,12 @@ def AddClass():
             + className +'","'+classTime +'","'+ classAddress+'",'+ "0" + ',"' +comments +'",'+count+','+classPoint+')'
         print (order)
         c.execute(order)
-
         conn.commit()
         conn.close()
         return jsonify({'status': '0'})
     return jsonify({'status': '3'})
 
+# /api/Teacher/UpdataClass allows the teacher updata the class infromation of the class.
 @app.route('/api/Teacher/UpdataClass', methods  = ['GET', 'POST'])
 def TeacherUpdataClass():
     if request.method == 'POST':
@@ -227,7 +236,7 @@ def TeacherUpdataClass():
         return jsonify({'status': '0'})
     return jsonify({'status': '2'})
 
-
+# /api/Manager/SetPower allows the  manager to change the power of the user.
 @app.route('/api/Manager/SetPower', methods = ['GET', 'POST'])
 def SetPower():
     if request.method == 'POST':
@@ -248,6 +257,7 @@ def SetPower():
         return jsonify({'status':'0'})
     return jsonify({'status':'3'})
 
+# /api/Manager/UpdataClass allows the manager to updata class.
 @app.route('/api/Manager/UpdataClass', methods = ['GET', 'POST'])
 def ManagerUpdataClass():
     if request.method == 'POST':
@@ -271,8 +281,8 @@ def ManagerUpdataClass():
         conn.commit()
         conn.close()
         return jsonify({'status': '0'})
-    return True
 
+# /api/Manager/DeleteClass allows the manager to delete the class.
 @app.route('/api/Manager/DeleteClass', methods = ['GET', 'POST'])
 def ManagerDeleteClass():
     peopleID = request.form.get('peopleID')
@@ -296,6 +306,7 @@ def ManagerDeleteClass():
     return jsonify({'status':'0'})
     return True
 
+# /api/Manager/DeleteStudent allows manager to delete students.
 @app.route('/api/Manager/DeleteStudent', methods = ['GET', 'POST'])
 def DeleteStudent():
     if request.method == 'POST':
@@ -320,6 +331,7 @@ def DeleteStudent():
         return jsonify({'status':'0'})
     return jsonify({'status':'3'})
 
+# /api/SignUp is used to make a new user.
 @app.route('/api/SignUp', methods = ['GET','POST'])
 def SignUp():
     if request.method == 'POST':
@@ -371,6 +383,7 @@ def userInDataBase(username,passwd):
             return jsonify({'status': '1'})
     return jsonify({'status': '1'})
 
+
 @app.route('/api/ChangePassword', methods = ['GET','POST'])
 def changePassword():
     if request.method == 'POST':
@@ -391,6 +404,7 @@ def changePassword():
         c.close()
         return jsonify({'status':'0'})
     return jsonify({'status':'2'})
+
 
 @app.route('/api/login', methods = ['GET', 'POST'])
 def login():
