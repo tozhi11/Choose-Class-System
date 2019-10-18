@@ -9,7 +9,7 @@ selectCourse.addEventListener("click", function(e) {
 
 //选课
 function chooseClass(cid) {
-	var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/ChooseClass";
+	var url = "http://127.0.0.1:5000/api/ChooseClass";
 	var ajaxStr = "classID=" + cid + "&peopleID=" + userID;
 	var xhr = null;
 	if(window.XMLHttpRequest) {

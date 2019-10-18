@@ -31,7 +31,7 @@ function getStuID() {
 }
 
 function postDeleteStu(ajaxStr) {
-  var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Manager/DeleteStudent";
+  var url = "http://127.0.0.1:5000/api/Manager/DeleteStudent";
   var xhr = null;
 
   if(window.XMLHttpRequest) {

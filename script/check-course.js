@@ -8,7 +8,7 @@ checkCourse.addEventListener("click", function(e) {
 });
 
 function quitClass(userID, classID) {
-	var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Student/WithdrawClass";
+	var url = "http://127.0.0.1:5000/api/Student/WithdrawClass";
 	var ajaxStr = "classID=" + classID + "&peopleID=" + userID;
 	var xhr = null;
 	if(window.XMLHttpRequest) {

@@ -40,8 +40,9 @@ function setFocus(input) {
 
 //提交用户登录信息
 function postUser(name, password) {
-	var url = 'https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/login';
+	var url = 'http://127.0.0.1:5000/api/login';
 	var requestString = "username=" + name + "&password=" + password;
+	console.log(requestString);
 	var oAjax = null;
 
 	if(window.XMLHttpRequest) {
@@ -61,6 +62,7 @@ function postUser(name, password) {
 		if(target.readyState === 4 && target.status === 200) {
 			var resultStr = target.responseText;
 			var resultObj = eval("(" + resultStr + ")");
+			console.log(resultObj)
 			if(resultObj.status === "1") {
 				showMsg('账号或密码错误');
 			} else {
@@ -69,14 +71,15 @@ function postUser(name, password) {
 				localStorage.setItem("position", resultObj.position);
 				localStorage.setItem("userStatus", null);
 				switch(resultObj.position) {
-					case "0" :
+					case 2 :
 						window.location.href = "../pages/student.html";
 						break;
-					case "1" :
+					case 1 :
 						window.location.href = "../pages/teacher.html";
 						break;
-					case "2"  :
+					case 0  :
 						window.location.href = "../pages/admin.html";
+						break;
 				}
 			}
 		}

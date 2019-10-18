@@ -9,10 +9,10 @@ let checkTbody = document.querySelector("#check-main");
 //获取课程信息
 function getClassInfo(userID, flag) {
 	if(flag) {
-		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Student/ClassStatus";
+		var url = "http://127.0.0.1:5000/api/Student/ClassStatus";
 		var ajaxStr = "peopleID=" + userID; 
 	} else {
-		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Class";
+		var url = "http://127.0.0.1:5000/api/Class";
 		var ajaxStr = null;
 	}
 	var xhr = null;

@@ -31,11 +31,11 @@ window.onload = function() {
 
 
 //获取登录用户的信息
-function getUserStatus() {
-	if (position == "0") {
-		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Student/Status";
+function getUserStatus() {	
+	if (position == 2) {
+		var url = "http://127.0.0.1:5000/api/Student/Status";
 	} else {
-		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Teacher/status";
+		var url = "http://127.0.0.1:5000/api/Teacher/S	tatus";
 	}
 	var xhr = null;
 	if(window.XMLHttpRequest) {
@@ -46,14 +46,15 @@ function getUserStatus() {
 
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhr.send(null);
+	var requestString = "peopleID=" + userID;
+	xhr.send(requestString);
 	xhr.onreadystatechange = function(e) {
 		var e = e || window.event;
 		var target = e.target || e.srcElement;
 		if(target.readyState === 4 && target.status === 200) {
 			var resultStr = target.responseText;
 			var resultObj = eval('(' + resultStr + ')');
-			if(position == "0") {
+			if(position == 2) {
 				renderStatus(resultObj);
 			} else {
 				renderTeacherStatus(resultObj);

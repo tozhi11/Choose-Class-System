@@ -9,14 +9,14 @@ var cComment = document.querySelector("#c-comment");
 var classInfo = document.querySelector("#class-info");
 var p = classInfo.querySelector("p");
 
-addCourseBox.addEventListener("input", checkInfo);
+// addCourseBox.addEventListener("input", checkInfo);
 
 //提交
 addCourseSubmit.addEventListener("click", submitInfo);
 
 //上传新课程
 function postNewClass(className, classTime, classAddress, classPeople, classCredit, classComment) {
-  var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Teacher/AddClass";
+  var url = "http://127.0.0.1:5000/api/Teacher/AddClass";
   var ajaxStr = "peopleID=" + userID + "&className=" + className + "&classTime=" + classTime + "&classAddress=" + classAddress + "&count=" + classPeople + "&classPoint=" + classCredit + "&comments=" + classComment;
   var xhr = null;
   // console.log(ajaxStr);
