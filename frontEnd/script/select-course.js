@@ -1,31 +1,36 @@
-var selectCourse = document.querySelector("#select-course");
 
+
+
+//点击选课按钮
+var selectCourse = document.querySelector("#select-course");
 selectCourse.addEventListener("click", function(e) {
 	var e = e || window.event;
 	var target = e.target || e.srcElement;
-	var flag = 0; //flag=0时表示查看全部课程内容
+	var flag = 0; // flag=0时表示查看全部课程内容
 	getClassInfo(userID, flag);
 });
 
 //选课
 function chooseClass(cid) {
-	var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/ChooseClass";
+	var url = "http://127.0.0.1:5000/api/ChooseClass";
 	var ajaxStr = "classID=" + cid + "&peopleID=" + userID;
 	var xhr = null;
-	if(window.XMLHttpRequest) {
+	if (window.XMLHttpRequest) {
 		xhr = new XMLHttpRequest();
-	} else {
+	} 
+	else {
 		xhr = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	console.log(ajaxStr);
 	xhr.send(ajaxStr);
 
 	xhr.onreadystatechange = function(e) {
 		var e = e || window.event;
 		var target = e.target || e.srcElement;
-		if(target.readyState === 4 && target.status === 200) {
+		if (target.readyState === 4 && target.status === 200) {
 			var resultStr = target.responseText;
 			var resultObj = eval('(' + resultStr + ')');
 			switch(resultObj.status) {

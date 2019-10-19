@@ -1,28 +1,31 @@
-var deleteClassSubmit = document.querySelector("#delete-course-submit");
-var deleteClassInput = document.querySelector("#delete-course-id");
-var deleteClassInfo = document.querySelector("#delete-course-info");
 
+
+
+var deleteClassInput = document.querySelector("#delete-course-id");
 deleteClassInput.addEventListener("input", function (e) {
   deleteClassInfo.innerHTML = "";
   var e = e || window.event;
   var target = e.target || e.srcElement;
   if (deleteClassInput.value.trim().length === 0) {
-    e.path[2].children[0].children[2].innerHTML = "课程编码不能为空";
-  } else {
+    e.path[2].children[0].children[2].innerHTML = "课程编号不能为空";
+  } 
+  else {
     e.path[2].children[0].children[2].innerHTML = "";
   }
 });
 
 
+var deleteClassSubmit = document.querySelector("#delete-course-submit");
 deleteClassSubmit.addEventListener("click", function (e) {
   var e = e || window.event;
   var target = e.target || e.srcElement;
   var str = getClassID();
   if (str.length !== 0) {
     e.path[2].children[0].children[2].innerHTML = "";
-    postDeleteClass(str);
-  } else {
-    e.path[2].children[0].children[2].innerHTML = "课程编码不能为空";
+    postDeleteClass("classID=" + str);
+  } 
+  else {
+    e.path[2].children[0].children[2].innerHTML = "课程编号不能为空";
   }
 });
 
@@ -31,20 +34,23 @@ function getClassID() {
 }
 
 function postDeleteClass(ajaxStr) {
-  var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Manager/DeleteClass";
+  var url = "http://127.0.0.1:5000/api/Manager/DeleteClass";
   var xhr = null;
 
   if (window.XMLHttpRequest) {
     xhr = new XMLHttpRequest();
-  } else {
+  } 
+  else {
     xhr = new ActiveXObject("Microsoft.XMLHTTP");
   }
 
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  console.log(ajaxStr);
   xhr.send(ajaxStr);
 
   xhr.onreadystatechange = function (e) {
+    var deleteClassInfo = document.querySelector("#delete-course-info");
     var e = e || e.target;
     var target = e.target || e.srcElement;
     if (target.readyState === 4 && target.status === 200) {

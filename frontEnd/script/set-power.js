@@ -1,39 +1,55 @@
+/** 
+ * @namespace
+ */
 var setPowerSubmit = document.querySelector("#change-power-submit"); //提交按钮
-var powerInfo = document.querySelector("#power-info");
 
 setPowerSubmit.addEventListener("click", function(e) {
   var e = e || window.event;
   var target = e.target || e.srcElement;
   var str = getInputValue();
-  console.log(str);
-  postSetPower(str);
+  if (str.length) {
+    postSetPower(str);
+  }
 });
 
 function getInputValue() {
   var changeID = document.querySelector("#set-power-id").value.trim();
   var changePowerSelect = document.querySelector("#change-power");
   var changePosition = changePowerSelect.selectedIndex;
-  return "rootID=" + userID + "&peopleID=" + changeID + "&power=" + changePosition;
+  if (changeID.length) {
+    document.querySelector("#change-info").innerHTML = '';
+    return "rootID=" + userID +
+      "&peopleID=" + changeID +
+      "&power=" + changePosition;
+  }
+  else {
+    document.querySelector("#change-info").innerHTML = '此项不能为空';
+    return "";
+  }
+  
 }
 
 function postSetPower(ajaxStr) {
-  var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Manager/SetPower";
+  var url = "http://127.0.0.1:5000/api/Manager/SetPower";
   var xhr = null;
 
-  if(window.XMLHttpRequest) {
+  if (window.XMLHttpRequest) {
     xhr = new XMLHttpRequest();
-  } else {
+  } 
+  else {
     xhr = new ActiveXObject("Microsoft.XMLHTTP");
   }
 
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  console.log(ajaxStr);
   xhr.send(ajaxStr);
 
-  xhr.onreadystatechange = function(e) {
+  xhr.onreadystatechange = function (e) {
+    var powerInfo = document.querySelector("#power-info");
     var e = e || window.event;
     var target = e.target || e.srcElement;
-    if(target.readyState === 4 && target.status === 200) {
+    if (target.readyState === 4 && target.status === 200) {
       var resultStr = target.responseText;
       var resultObj = eval('(' + resultStr + ')');
       switch(resultObj.status) {

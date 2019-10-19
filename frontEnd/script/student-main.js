@@ -1,3 +1,6 @@
+/** 
+ * @namespace
+ */
 let classComments = document.querySelector("#class-comments");
 let detailBox = document.querySelector("#detail-box");
 let detailItem =  detailBox.querySelectorAll(".detail-item");
@@ -8,28 +11,39 @@ let checkTbody = document.querySelector("#check-main");
 
 //获取课程信息
 function getClassInfo(userID, flag) {
-	if(flag) {
+	console.log(flag)
+	// if (flag) {
+	// 	var url = "http://127.0.0.1:5000/api/Student/ClassStatus";
+	// 	var ajaxStr = "peopleID=" + userID; 
+	// } 
+	// else {
+	// 	var url = "http://127.0.0.1:5000/api/Class";
+	// }
+	if (flag) {
 		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Student/ClassStatus";
 		var ajaxStr = "peopleID=" + userID; 
-	} else {
+	} 
+	else {
 		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Class";
 		var ajaxStr = null;
 	}
 	var xhr = null;
-	if(window.XMLHttpRequest) {
+	if (window.XMLHttpRequest) {
 		xhr = new XMLHttpRequest();
-	} else {
+	} 
+	else {
 		xhr = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "aplication/x-www-form-urlencoded");
+	console.log(ajaxStr);	
 	xhr.send(ajaxStr);
 
 	xhr.onreadystatechange = function(e) {
 		var e = e || window.event;
 		var target = e.target || e.srcElement;
-		if(target.readyState === 4 && target.status === 200) {
+		if (target.readyState === 4 && target.status === 200) {
 			var resultStr = target.responseText;
 			var resultObj = eval('(' + resultStr + ')');
 			switch(resultObj.status) {
@@ -39,11 +53,11 @@ function getClassInfo(userID, flag) {
 					break;
 				case "1":
 					console.log("没有权限");
-					return ;
+					return;
 					break;
 				case "2":
 					console.log("方法错误");
-					return ;
+					return;
 					break;
 			}
 		}
@@ -52,9 +66,12 @@ function getClassInfo(userID, flag) {
 
 //获取课程内容
 function getAllClass(obj, flag) {
+	console.log(obj)
 	var len = obj.length;
+	console.log(len)
 	var td = new Array();
 	for(var i = 0; i < len; i++) {
+
 		td[i] = "<td>" + obj[i].classID + "</td>";
 		td[i] += "<td>" + changeToStar(obj[i].score) + "</td>";
 		td[i] += "<td>" + obj[i].className + "</td>";
@@ -62,20 +79,24 @@ function getAllClass(obj, flag) {
 		td[i] += "<td>" + obj[i].classPoint + "</td>";
 		td[i] += "<td>" + obj[i].count + "</td>";
 		td[i] += "<td><button>详情</button>";
-		if(flag) {
+
+		if (flag) {
 			td[i] += "<button>退选</button></td>";
-		} else {
+		} 
+		else {
 			td[i] += "<button>选课</button></td>";
 		} 
 	}
+	console.log(td)
 	return td;
 }
 
 //课程显示在页面上;
 function renderClass(classCells, flag) {
-	if(flag === 0) {
+	if (flag === 0) {
 		selectTbody.innerHTML = "<tr>" + classCells.join("</tr><tr>") + "</tr>";
-	} else {
+	} 
+	else {
 		checkTbody.innerHTML = "<tr>" + classCells.join("</tr><tr>") + "</tr>";
 	}
 }
@@ -87,7 +108,7 @@ checkTbody.addEventListener("click", getDetail);
 function getDetail (e) {
 	var e = e || window.event;
 	var target = e.target || e.srcElement;
-	if(target.nodeName.toLowerCase() === "button") {
+	if (target.nodeName.toLowerCase() === "button") {
 		switch(target.innerHTML) {
 			case "详情":
 				renderClassDetail(e.path[2].cells[0].innerHTML);
@@ -96,7 +117,7 @@ function getDetail (e) {
 				chooseClass(e.path[2].cells[0].innerHTML);
 				break;
 			case "退选":
-				quitClass(userID,e.path[2].cells[0].innerHTML);
+				quitClass(userID, e.path[2].cells[0].innerHTML);
 		} 
 	}
 }
@@ -111,27 +132,29 @@ function changeToStar(score) {
 //显示课程详情
 function renderClassDetail(cid) {
 	var p = document.createElement("p");
-	var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Class/detail";
+	var url = "http://127.0.0.1:5000/api/Class/detail";
 	var ajaxStr = "classID=" + cid;
 	var xhr = null;
-	if(window.XMLHttpRequest) {
+	if (window.XMLHttpRequest) {
 		xhr = new XMLHttpRequest();
-	} else {
+	} 
+	else {
 		xhr = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	console.log(ajaxStr);
 	xhr.send(ajaxStr);
 
 	xhr.onreadystatechange = function(e) {
 		var e = e || window.event;
 		var target = e.target || e.srcElement;
-		if(target.readyState === 4 && target.status === 200) {
+		if (target.readyState === 4 && target.status === 200) {
 			var resultStr = target.responseText;
 			var resultObj = eval('(' + resultStr + ')');
-			p.innerHTML = resultObj.class.comments;
-			detailItem[0].innerHTML = "时间: " + resultObj.class.classTime;
-			detailItem[1].innerHTML = "地点:" + resultObj.class.classAddress;
+			p.innerHTML = resultObj.comments;
+			detailItem[0].innerHTML = "时间: " + resultObj.classTime;
+			detailItem[1].innerHTML = "地点:" + resultObj.classAddress;
 		}
 	}
 	classComments.replaceChild(p, classComments.querySelector("p"));
