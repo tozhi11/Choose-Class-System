@@ -34,7 +34,7 @@ function getClassID() {
 }
 
 function postDeleteClass(ajaxStr) {
-  var url = "http://127.0.0.1:5000/api/Manager/DeleteClass";
+  var url = "http://47.107.246.0:8083/api/Manager/DeleteClass";
   var xhr = null;
 
   if (window.XMLHttpRequest) {

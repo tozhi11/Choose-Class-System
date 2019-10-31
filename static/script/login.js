@@ -77,13 +77,13 @@ function postUser(name, password) {
 				localStorage.setItem("userStatus", null);
 				switch(resultObj.position) {
 					case "2" :
-						window.location.href = "../pages/student.html";
+						window.location.href = "/static/pages/student.html";
 						break;
 					case "1" :
-						window.location.href = "../pages/teacher.html";
+						window.location.href = "/static/pages/teacher.html";
 						break;
 					case "0"  :
-						window.location.href = "../pages/admin.html";
+						window.location.href = "/static/pages/admin.html";
 				}
 			}
 		}

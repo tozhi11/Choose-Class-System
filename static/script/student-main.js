@@ -12,13 +12,14 @@ let checkTbody = document.querySelector("#check-main");
 //获取课程信息
 function getClassInfo(userID, flag) {
 	console.log(flag)
+	var ajaxStr = "";
 	if (flag) {
 		var url = "http://47.107.246.0:8083/api/Student/ClassStatus";
-		var ajaxStr = "peopleID=" + userID; 
+		ajaxStr = "peopleID=" + userID; 
 	} 
 	else {
 		var url = "http://47.107.246.0:8083/api/Class";
-		var ajaxStr = null;
+		ajaxStr = "";
 	}
 	// if (flag) {
 	// 	var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Student/ClassStatus";
@@ -37,7 +38,7 @@ function getClassInfo(userID, flag) {
 	}
 	console.log(url);
 	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "aplication/x-www-form-urlencoded");
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	console.log(ajaxStr);	
 	xhr.send(ajaxStr);
 
@@ -71,13 +72,14 @@ function getAllClass(obj, flag) {
 	var len = obj.length;
 	console.log(len)
 	var td = new Array();
-	for(var i = 0; i < 1; i++) {
-
+	// var i = 0;
+	for(var i in obj) {
+		console.log(i);
 		td[i] = "<td>" + obj[i].classID + "</td>";
 		td[i] += "<td>" + changeToStar(obj[i].score) + "</td>";
 		td[i] += "<td>" + obj[i].className + "</td>";
 		td[i] += "<td>" + obj[i].teacher + "</td>";
-		td[i] += "<td>" + obj[i].classPoint + "</td>";
+		td[i] += "<td>" + obj[i].point + "</td>";
 		td[i] += "<td>" + obj[i].count + "</td>";
 		td[i] += "<td><button>详情</button>";
 
@@ -87,6 +89,7 @@ function getAllClass(obj, flag) {
 		else {
 			td[i] += "<button>选课</button></td>";
 		} 
+		// i++;
 	}
 	console.log(td)
 	return td;
