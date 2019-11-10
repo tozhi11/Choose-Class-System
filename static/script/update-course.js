@@ -9,15 +9,17 @@ updateCourseSubmit.addEventListener("click", submitInfo);
 
 //上传新课程
 function postUpdateClass(classID, className, classTime, classAddress, classPeople, classCredit, classComment) {
-  var url = "http://127.0.0.1:5000/api/Teacher/UpdateClass";
-  var ajaxStr = "peopleID=" + userID 
-                + "&classID=" + classID 
-                + "&className=" + className 
-                + "&classTime=" + classTime 
-                + "&classAddress=" + classAddress 
-                + "&count=" + classPeople 
-                + "&classPoint=" + classCredit 
-                + "&comments=" + classComment;
+  var url = "http://47.107.246.0:8083/api/Teacher/UpdateClass";
+  var ajaxStr = "peopleID=" + userID + "&classID=" + classID + "&className=" + className + "&classTime=" + classTime + "&classAddress=" + classAddress + "&count=" + classPeople + "&classPoint=" + classCredit + "&comments=" + classComment;
+  // var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Teacher/UpdateClass";
+  // var ajaxStr = "peopleID=" + userID 
+  //               + "&classID=" + classID 
+  //               + "&className=" + className 
+  //               + "&classTime=" + classTime 
+  //               + "&classAddress=" + classAddress 
+  //               + "&count=" + classPeople 
+  //               + "&classPoint=" + classCredit 
+  //               + "&comments=" + classComment;
   var xhr = null;
   if (window.XMLHttpRequest) {
     xhr = new XMLHttpRequest();

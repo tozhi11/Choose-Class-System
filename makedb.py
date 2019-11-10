@@ -15,7 +15,7 @@ c.execute('''CREATE TABLE PEOPLE
         COLLEGE     CHAR(50)                         ,
         YEAR        CHAR(10)                         ,
         COURSE      CHAR(50));''')
-
+c.execute("INSERT INTO PEOPLE (ID,PASSWORD,NAME,POSITION) VALUES('root','root','root',0)")
 c.execute('''CREATE TABLE CLASS
         (CLASSID    INTEGER PRIMARY KEY     AUTOINCREMENT,
          CLASSNAME  CHAR(50)                 NOT NULL,
