@@ -9,7 +9,12 @@ let table = document.querySelector("table");
 let selectTbody = document.querySelector("#select-main");
 let checkTbody = document.querySelector("#check-main");
 
-//获取课程信息
+
+/**
+ * 学生获取课程信息
+ * @param {String} userID | 用户id
+ * @param {Number} flag | flag = 1时查看已选课程, flag = 0时查看学生全部课程
+ */
 function getClassInfo(userID, flag) {
 	if (flag) {
 		var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Student/ClassStatus";
@@ -28,7 +33,7 @@ function getClassInfo(userID, flag) {
 	}
 
 	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "aplication/x-www-form-urlencoded");
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	console.log(ajaxStr);
 	xhr.send(ajaxStr);
 
@@ -56,7 +61,12 @@ function getClassInfo(userID, flag) {
 	}
 }
 
-//获取课程内容
+
+/**
+ * 学生获取课程内容
+ * @param {Object} obj | 课程
+ * @param {Number} flag | flag = 0时显示选课按钮，flag = 1时显示退选按钮
+ */
 function getAllClass(obj, flag) {
 	var len = obj.length;
 	var td = new Array();
@@ -69,7 +79,6 @@ function getAllClass(obj, flag) {
 		td[i] += "<td>" + obj[i].classPoint + "</td>";
 		td[i] += "<td>" + obj[i].count + "</td>";
 		td[i] += "<td><button>详情</button>";
-
 		if (flag) {
 			td[i] += "<button>退选</button></td>";
 		} 
@@ -80,9 +89,14 @@ function getAllClass(obj, flag) {
 	return td;
 }
 
-//课程显示在页面上;
+
+/**
+ * 将课程渲染到页面上显示
+ * @param {Array} classCells | 需渲染在页面上的每行内容
+ * @param {Number} flag | 
+ */
 function renderClass(classCells, flag) {
-	if (flag === 0) {
+	if (!fla) {
 		selectTbody.innerHTML = "<tr>" + classCells.join("</tr><tr>") + "</tr>";
 	} 
 	else {
@@ -94,6 +108,10 @@ function renderClass(classCells, flag) {
 selectTbody.addEventListener("click",getDetail);
 checkTbody.addEventListener("click", getDetail);
 
+
+/**
+ * 学生获取课程具体内容
+ */
 function getDetail (e) {
 	var e = e || window.event;
 	var target = e.target || e.srcElement;
@@ -112,13 +130,20 @@ function getDetail (e) {
 }
 
 
-//将数字评分转为星星符号
+/**
+ * 将数字评分转为星星符号
+ * @param {Number} score | 分数(总分为5)
+ */
 function changeToStar(score) {
 	var starStr = "★★★★★✰✰✰✰✰";
 	return starStr.slice(5 - score, 10 - score);
 }
 
-//显示课程详情
+
+/**
+ * 显示课程详情
+ * @param {String} cid | 课程编号
+ */
 function renderClassDetail(cid) {
 	var p = document.createElement("p");
 	var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Class/detail";
@@ -151,7 +176,7 @@ function renderClassDetail(cid) {
 }
 
 
-//关闭小窗口
+//关闭详情窗口
 closeDetailWin.addEventListener("click", function(e) {
 	document.querySelector("#class-detail").style.display = "none";
 });

@@ -7,7 +7,17 @@ updateCourseBox.addEventListener("input", checkInfo);
 var updateCourseSubmit = document.querySelector("#update-course-submit");
 updateCourseSubmit.addEventListener("click", submitInfo);
 
-//上传新课程
+
+/**
+ * 老师上传新课程
+ * @param {String} classID | 课程编号
+ * @param {String} className | 课程名称
+ * @param {String} classTime | 上课时间
+ * @param {String} classAddress | 上课地点
+ * @param {String} classPeople | 课堂总人数
+ * @param {String} classCredit | 学分
+ * @param {String} classComment | 课程简介
+ */
 function postUpdateClass(classID, className, classTime, classAddress, classPeople, classCredit, classComment) {
   var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Teacher/UpdateClass";
   var ajaxStr = "peopleID=" + userID 

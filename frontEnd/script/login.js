@@ -11,7 +11,6 @@ window.onload = setFocus(userName);
 
 //监听提交按钮
 let userSubmit = document.querySelector("#user-submit");
-
 userSubmit.addEventListener("click", function(e) {
 	var e = e || window.event;
 	var target = e.target || e.srcElement;
@@ -29,19 +28,30 @@ userSubmit.addEventListener("click", function(e) {
 });
 
 
-//提示信息
+/**
+ * 
+ * @param {String} str | 提示内容
+ */
 function showMsg(str) {
 	let checkMsg = document.querySelector("#check-msg");
 	checkMsg.innerHTML = str;
 	checkMsg.classList.add("msg");
 }
 
-
+/**
+ * 
+ * @param {TagName} input | 将页面焦点置于输入框内
+ */
 function setFocus(input) {
 	input.focus();
 }
 
-//提交用户登录信息
+
+/**
+ * 提交用户登录信息
+ * @param {String} name | 用户名
+ * @param {String} password | 密码
+ */
 function postUser(name, password) {
 	var url = 'https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/login';
 	var ajaxStr = "username=" + name + "&password=" + password;

@@ -18,7 +18,6 @@ deleteClassInput.addEventListener("input", function (e) {
 var deleteClassSubmit = document.querySelector("#delete-course-submit");
 deleteClassSubmit.addEventListener("click", function (e) {
   var e = e || window.event;
-  var target = e.target || e.srcElement;
   var str = getClassID();
   if (str.length !== 0) {
     e.path[2].children[0].children[2].innerHTML = "";
@@ -29,10 +28,18 @@ deleteClassSubmit.addEventListener("click", function (e) {
   }
 });
 
+/**
+ * 获取课程ID
+ */
 function getClassID() {
   return deleteClassInput.value.trim();
 }
 
+
+/**
+ * 老师/管理员删除课程
+ * @param {String} ajaxStr | ajax.send参数
+ */
 function postDeleteClass(ajaxStr) {
   var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Manager/DeleteClass";
   var xhr = null;

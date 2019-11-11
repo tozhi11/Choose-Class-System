@@ -1,5 +1,7 @@
 
-
+/**
+ * 通过监控oninput事件动态生成提示信息
+ */
 function checkInfo(e) {
   var e = e || window.event;
   var target = e.target || e.srcElement;
@@ -16,6 +18,10 @@ function checkInfo(e) {
   }
 }
 
+/**
+ * 
+ * 上传提交信息到服务器
+ */
 function submitInfo(e) {
   var e = e || window.event;
   var target = e.target || e.srcElement;
@@ -49,7 +55,11 @@ function submitInfo(e) {
   }
 }
 
-//检查输入内容
+
+/**
+ * 检查全部输入的内容
+ * @param {Array} courseItems | input数组
+ */
 function checkInputValue(courseItems) {
   var flag = true;
   var itemsLen = courseItems.length;
@@ -61,11 +71,23 @@ function checkInputValue(courseItems) {
   return flag;
 }
 
-//获取警告内容
+
+/**
+ * 若输入不符合提示内容，添加警告信息
+ * @param {Array} arr | input数组
+ * @param {Number} idx | 数组下标
+ */
 function getWarnInfo(arr, idx) {
-  var inputValue = getContent(arr[idx].children[1]); //input框输入的内容
-  var nameText = arr[idx].children[0].innerHTML.slice(0, -1); //input框的标题
-  var infoText = arr[idx].children[2]; //提示信息
+  /**
+   * @namespace
+   */
+  //input框输入的内容
+  var inputValue = getContent(arr[idx].children[1]); 
+  //input框的标题
+  var nameText = arr[idx].children[0].innerHTML.slice(0, -1); 
+  //提示信息
+  var infoText = arr[idx].children[2]; 
+
   if (inputValue.length === 0) {
     infoText.innerHTML = nameText + "不能为空";
     return false;

@@ -20,6 +20,7 @@ submit.addEventListener("click",function(e) {
   var admYear = admissionYear[admissionYear.selectedIndex].value;
   var clg = college[college.selectedIndex].value;
   var tel = telNum.value.trim();
+
   if (signUpPosition[0].checked === true) {
     userPosition = 2;
   } else if (signUpPosition[1].checked === true) {
@@ -54,10 +55,19 @@ submit.addEventListener("click",function(e) {
   else {
     postNewUser(userName, userID, password, admYear, clg, tel, userPosition);
   }
-  window.location.href = "../pages/login.html";
+  // window.location.href = "../pages/login.html";
 });
 
-
+/**
+ * 
+ * @param {String} userName | 名字
+ * @param {String} userID | 学号/教工号
+ * @param {String} password | 密码
+ * @param {String} admYear | 入学年份
+ * @param {String} clg | 院系
+ * @param {String} tel | 联系电话
+ * @param {Number} userPosition | 用户身份
+ */
 function postNewUser(userName, userID, password, admYear, clg, tel, userPosition) {
 
   var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/SignUp";
@@ -88,8 +98,8 @@ function postNewUser(userName, userID, password, admYear, clg, tel, userPosition
     if (target.readyState === 4 && target.status === 200) {
       var resultStr = target.responseText;
       var resultObj = eval('(' + resultStr + ')');
-      // window.location.href = "../pages/login.html";
-      console.log(resultObj);
+      window.location.href = "../pages/login.html";
+      // console.log(resultObj);
     }
   }
 }

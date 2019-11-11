@@ -1,12 +1,19 @@
-var checkCourse = document.querySelector("#check-course");
 
+//查看已选课程
+var checkCourse = document.querySelector("#check-course");
 checkCourse.addEventListener("click", function(e) {
 	var e = e || window.event;
-	var target = e.target || e.srcElement;
 	var flag = 1; //flag = 1时为查看已选课程
 	getClassInfo(userID, flag);
+	console.log(userID);
 });
 
+
+/**
+ * 学生退选课程
+ * @param {String} userID | 用户id
+ * @param {String} classID | 课程id
+ */
 function quitClass(userID, classID) {
 	var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Student/WithdrawClass";
 	var ajaxStr = "classID=" + classID + "&peopleID=" + userID;
