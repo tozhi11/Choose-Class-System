@@ -1,0 +1,92 @@
+html, body{
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	font-family: 'Noto Serif SC',	serif;
+}
+
+header {
+	position: absolute;
+	width: 100%;
+	height: 70px;
+	overflow: hidden;
+	color: #fff;
+	background-color: #393e46;
+}
+
+.header-left {
+	float: left;
+	height: 70px;
+	margin-left: 20px;
+}
+
+.header-right {
+	float: right;
+	height: 70px;
+	color: #fff;
+}
+
+.header-right a {
+	color: #fff;
+	line-height: 80px;
+}
+
+.header-right ion-icon {
+	margin: 0 20px;
+	font-size: 20px;
+}
+
+.header-right p {
+	float: left;
+	height: 70px;
+	line-height: 70px;
+	margin: 0;
+}
+
+.body-wrapper {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	padding-top: 70px;
+	flex-flow: row wrap;
+}
+
+.list-wrapper {
+	width: 250px;
+	height: 100%;
+	border-right: 1px solid #ccc;
+	color: #00adb5;
+	box-shadow: 10px 10px 10px #eee;
+}
+
+.main-wrapper {
+	box-sizing: border-box;
+	height: 100%;
+	flex: 1 1 200px;
+	padding: 20px;
+	overflow: auto;
+}
+
+.list-wrapper ul {
+	box-sizing: border-box;
+	display: flex;
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+	flex-flow: column wrap;
+	list-style-type: none;
+	cursor: pointer;
+	text-align: center;
+}
+
+.list-wrapper ul li {
+	flex: 50px;
+	line-height: 50px;
+}
+
+.list-title:hover,
+.li-active {
+	background-color: #00adb5;
+	color: #fff;
+}

@@ -6,7 +6,7 @@ deleteStuInput.addEventListener("input", function(e) {
   deleteStuInfo.innerHTML = "";
   var e = e || window.event;
   var target = e.target || e.srcElement;
-  if (!deleteStuInput.value.trim().length) {
+  if (deleteStuInput.value.trim().length === 0) {
     e.path[2].children[0].children[2].innerHTML = "学号不能为空";
   } 
   else {
@@ -36,11 +36,6 @@ function getStuID() {
   return deleteStuInput.value.trim();
 }
 
-
-/**
- * 
- * @param {String} ajaxStr | ajax.send参数
- */
 function postDeleteStu(ajaxStr) {
   var url = "http://47.107.246.0:8083/api/Manager/DeleteStudent";
   var xhr = null;
@@ -58,8 +53,7 @@ function postDeleteStu(ajaxStr) {
   xhr.send(ajaxStr);
 
   xhr.onreadystatechange = function (e) {
-    //底部提示信息
-    var deleteStuInfo = document.querySelector("#delete-stu-info"); 
+    var deleteStuInfo = document.querySelector("#delete-stu-info");
     var e = e || e.target;
     var target = e.target || e.srcElement;
     if (target.readyState === 4 && target.status === 200) {

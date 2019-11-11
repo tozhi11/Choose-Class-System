@@ -1,7 +1,8 @@
+/** 
+ * @namespace
+ */
+var setPowerSubmit = document.querySelector("#change-power-submit"); //提交按钮
 
-
- //点击提交按钮修改成员权限
-var setPowerSubmit = document.querySelector("#change-power-submit"); 
 setPowerSubmit.addEventListener("click", function(e) {
   var e = e || window.event;
   var target = e.target || e.srcElement;
@@ -11,14 +12,7 @@ setPowerSubmit.addEventListener("click", function(e) {
   }
 });
 
-
-/**
- * 获取输入内容
- */
 function getInputValue() {
-  /**
-   * @namespace
-   */
   var changeID = document.querySelector("#set-power-id").value.trim();
   var changePowerSelect = document.querySelector("#change-power");
   var changePosition = changePowerSelect.selectedIndex;
@@ -34,10 +28,7 @@ function getInputValue() {
   }
   
 }
-/**
- * 提交修改权限请求
- * @param {String} ajaxStr | ajax.send参数
- */
+
 function postSetPower(ajaxStr) {
   var url = "http://47.107.246.0:8083/api/Manager/SetPower";
   var xhr = null;

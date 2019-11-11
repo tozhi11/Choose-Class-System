@@ -1,0 +1,92 @@
+.update-permission,
+.update-course,
+.delete-course,
+.delete-stu {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding-left: 50px;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.set-power-box,
+.update-course-box,
+.delete-course-box,
+.delete-stu-box {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.set-power-items,
+.update-course-items,
+.delete-course-items,
+.delete-stu-items {
+  position: relative;
+  list-style-type: none;
+  margin: 20px 0;
+}
+
+.set-power-title,
+.update-course-title,
+.delete-course-title,
+.delete-stu-title {
+  display: inline-block;
+  width: 100px;
+}
+
+.info {
+  position: absolute;
+  margin-left: 10px;
+  line-height: 30px;
+  color: red;
+}
+
+input[type="text"],
+select,
+input[type="submit"] {
+  box-sizing: border-box;
+  width: 300px;
+  height: 30px;
+  margin-left: 5px;
+  padding: 0 5px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  line-height: 20px;
+  outline: none;
+}
+
+input[type="submit"] {
+  height: 30px;
+  background-color: #00adb5;
+  border: 1px solid #00adb5;
+  border-radius: 5px;
+  color: #fff;
+}
+
+textarea {
+  box-sizing: border-box;
+  width: 300px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  resize: none;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 5px #00adb5;
+}
+
+.power-info,
+.delete-stu-info,
+.delete-course-info,
+.class-info {
+  color: red;
+  font-size: 14px;
+}

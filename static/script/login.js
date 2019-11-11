@@ -11,6 +11,7 @@ window.onload = setFocus(userName);
 
 //监听提交按钮
 let userSubmit = document.querySelector("#user-submit");
+
 userSubmit.addEventListener("click", function(e) {
 	var e = e || window.event;
 	var target = e.target || e.srcElement;
@@ -28,30 +29,19 @@ userSubmit.addEventListener("click", function(e) {
 });
 
 
-/**
- * 
- * @param {String} str | 提示内容
- */
+//提示信息
 function showMsg(str) {
 	let checkMsg = document.querySelector("#check-msg");
 	checkMsg.innerHTML = str;
 	checkMsg.classList.add("msg");
 }
 
-/**
- * 
- * @param {TagName} input | 将页面焦点置于输入框内
- */
+
 function setFocus(input) {
 	input.focus();
 }
 
-
-/**
- * 提交用户登录信息
- * @param {String} name | 用户名
- * @param {String} password | 密码
- */
+//提交用户登录信息
 function postUser(name, password) {
 	var url = 'http://47.107.246.0:8083/api/login';
 	// var url = 'https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/login';
@@ -87,13 +77,13 @@ function postUser(name, password) {
 				localStorage.setItem("userStatus", null);
 				switch(resultObj.position) {
 					case "2" :
-						window.location.href = "../pages/student.html";
+						window.location.href = "/static/pages/student.html";
 						break;
 					case "1" :
-						window.location.href = "../pages/teacher.html";
+						window.location.href = "/static/pages/teacher.html";
 						break;
 					case "0"  :
-						window.location.href = "../pages/admin.html";
+						window.location.href = "/static/pages/admin.html";
 				}
 			}
 		}

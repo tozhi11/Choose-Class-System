@@ -9,21 +9,17 @@ let table = document.querySelector("table");
 let selectTbody = document.querySelector("#select-main");
 let checkTbody = document.querySelector("#check-main");
 
-
-/**
- * 学生获取课程信息
- * @param {String} userID | 用户id
- * @param {Number} flag | flag = 1时查看已选课程, flag = 0时查看学生全部课程
- */
+//获取课程信息
 function getClassInfo(userID, flag) {
 	console.log(flag)
+	var ajaxStr = "";
 	if (flag) {
 		var url = "http://47.107.246.0:8083/api/Student/ClassStatus";
-		var ajaxStr = "peopleID=" + userID; 
+		ajaxStr = "peopleID=" + userID; 
 	} 
 	else {
 		var url = "http://47.107.246.0:8083/api/Class";
-		var ajaxStr = null;
+		ajaxStr = "";
 	}
 	// if (flag) {
 	// 	var url = "https://www.fastmock.site/mock/0ca083d3c1d3e79c2abdb96367fac9dd/api/Student/ClassStatus";
@@ -43,7 +39,7 @@ function getClassInfo(userID, flag) {
 	console.log(url);
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	console.log(ajaxStr);
+	console.log(ajaxStr);	
 	xhr.send(ajaxStr);
 
 	xhr.onreadystatechange = function(e) {
@@ -70,45 +66,38 @@ function getClassInfo(userID, flag) {
 	}
 }
 
-
-/**
- * 学生获取课程内容
- * @param {Object} obj | 课程
- * @param {Number} flag | flag = 0时显示选课按钮，flag = 1时显示退选按钮
- */
+//获取课程内容
 function getAllClass(obj, flag) {
 	console.log(obj)
 	var len = obj.length;
 	console.log(len)
 	var td = new Array();
-	for(var i = 0; i < 1; i++) {
-
+	// var i = 0;
+	for(var i in obj) {
+		console.log(i);
 		td[i] = "<td>" + obj[i].classID + "</td>";
 		td[i] += "<td>" + changeToStar(obj[i].score) + "</td>";
 		td[i] += "<td>" + obj[i].className + "</td>";
 		td[i] += "<td>" + obj[i].teacher + "</td>";
-		td[i] += "<td>" + obj[i].classPoint + "</td>";
+		td[i] += "<td>" + obj[i].point + "</td>";
 		td[i] += "<td>" + obj[i].count + "</td>";
 		td[i] += "<td><button>详情</button>";
+
 		if (flag) {
 			td[i] += "<button>退选</button></td>";
 		} 
 		else {
 			td[i] += "<button>选课</button></td>";
 		} 
+		// i++;
 	}
 	console.log(td)
 	return td;
 }
 
-
-/**
- * 将课程渲染到页面上显示
- * @param {Array} classCells | 需渲染在页面上的每行内容
- * @param {Number} flag | 
- */
+//课程显示在页面上;
 function renderClass(classCells, flag) {
-	if (!fla) {
+	if (flag === 0) {
 		selectTbody.innerHTML = "<tr>" + classCells.join("</tr><tr>") + "</tr>";
 	} 
 	else {
@@ -120,10 +109,6 @@ function renderClass(classCells, flag) {
 selectTbody.addEventListener("click",getDetail);
 checkTbody.addEventListener("click", getDetail);
 
-
-/**
- * 学生获取课程具体内容
- */
 function getDetail (e) {
 	var e = e || window.event;
 	var target = e.target || e.srcElement;
@@ -142,20 +127,13 @@ function getDetail (e) {
 }
 
 
-/**
- * 将数字评分转为星星符号
- * @param {Number} score | 分数(总分为5)
- */
+//将数字评分转为星星符号
 function changeToStar(score) {
 	var starStr = "★★★★★✰✰✰✰✰";
 	return starStr.slice(5 - score, 10 - score);
 }
 
-
-/**
- * 显示课程详情
- * @param {String} cid | 课程编号
- */
+//显示课程详情
 function renderClassDetail(cid) {
 	var p = document.createElement("p");
 	var url = "http://47.107.246.0:8083/api/Class/detail";
@@ -188,7 +166,7 @@ function renderClassDetail(cid) {
 }
 
 
-//关闭详情窗口
+//关闭小窗口
 closeDetailWin.addEventListener("click", function(e) {
 	document.querySelector("#class-detail").style.display = "none";
 });
