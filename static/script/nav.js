@@ -18,6 +18,7 @@ window.onload = function() {
 		case "0":
 			document.querySelector(".select-course").setAttribute("style", "display: none");
 			document.querySelector(".check-course").setAttribute("style", "display: none");
+			// document.querySelector(".view-personal-info").setAttribute("style", "display: none");
 			break;
 		case "1":
 			document.querySelector(".add-course").setAttribute("style", "display:none");
@@ -33,9 +34,7 @@ window.onload = function() {
 }
 
 
-/**
- * 获取登录用户信息
- */
+//获取登录用户的信息
 function getUserStatus() {
 	var requsetstr = "peopleID=" + userID;
 	if (POSITION === "0") {
@@ -78,11 +77,7 @@ function getUserStatus() {
 	}
 }
 
-
-/**
- * 根据用户信息在顶部导航栏生成相应提示内容
- * @param {Object} obj | 学生用户信息
- */
+//渲染导航栏的欢迎信息
 function renderStatus(obj) {
 	var p = headerRight.querySelector("p");
 	p.innerHTML = "欢迎你！" + obj.name + "同学(" 
@@ -92,11 +87,6 @@ function renderStatus(obj) {
 								+ ")";
 }
 
-
-/**
- * 根据用户信息在顶部导航栏生成相应提示内容
- * @param {Object} obj | 老师/管理员用户信息
- */
 function renderTeacherStatus(obj) {
 	var p = headerRight.querySelector("p");
 	p.innerHTML = "欢迎你！" + obj.name 
@@ -112,9 +102,6 @@ exit.addEventListener("click", function(e) {
 	logOut();
 });
 
-/**
- * 退出登录状态
- */
 function logOut() {
 	var url = "http://47.107.246.0:8083/api/logout";
 	var ajaxStr = null;
