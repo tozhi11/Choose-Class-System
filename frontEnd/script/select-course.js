@@ -1,16 +1,17 @@
 
-
-
 //点击选课按钮
 var selectCourse = document.querySelector("#select-course");
 selectCourse.addEventListener("click", function(e) {
 	var e = e || window.event;
-	var target = e.target || e.srcElement;
 	var flag = 0; // flag=0时表示查看全部课程内容
 	getClassInfo(userID, flag);
 });
 
-//选课
+
+/**
+ * 学生选课
+ * @param {String} cid | 学生用户id 
+ */
 function chooseClass(cid) {
 	var url = "http://47.107.246.0:8083/api/ChooseClass";
 	var ajaxStr = "classID=" + cid + "&peopleID=" + userID;
