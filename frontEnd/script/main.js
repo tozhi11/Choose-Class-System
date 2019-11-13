@@ -3,18 +3,18 @@
 //点击左边导航栏时，在页面内渲染出相应内容
 let listBox = document.querySelector("#list-box");
 listBox.addEventListener("click", function (e) {
-
 	let li = listBox.querySelectorAll(".list-title");
 	var e = e || e.window.event;
 	var target = e.target || e.srcElement;
 
+	//点击某个列表项时，背景颜色改变
 	li.forEach(function(val, idx, arr) {
 		if (arr[idx].classList.contains("li-active")) {
 			arr[idx].classList.remove("li-active");
 		}
 	});
-
 	target.classList.add("li-active");
+
 
 	if (target.nodeName.toLowerCase() === 'li') {
 		let mainContent = document.querySelectorAll("#main-wrapper");
@@ -22,7 +22,6 @@ listBox.addEventListener("click", function (e) {
 			case "选课":
 				document.querySelector(".select-course").removeAttribute("style");
 				document.querySelector(".check-course").setAttribute("style", "display: none");
-				// document.querySelector(".view-personal-info").setAttribute("style", "display: none");
 				if (mainContent.innerHTML === "") {
 					getClassInfo(userID, 0);
 				}
@@ -35,7 +34,6 @@ listBox.addEventListener("click", function (e) {
 				document.querySelector(".check-course").removeAttribute("style");
 				break;
 			case "添加课程":
-
 				document.querySelector(".update-course").setAttribute("style", "display: none");
 				document.querySelector(".add-course").removeAttribute("style");
 				break;
@@ -52,21 +50,18 @@ listBox.addEventListener("click", function (e) {
 				}
 				break;
 			case "修改人员权限":
-				
 				document.querySelector(".update-permission").removeAttribute("style");
 				document.querySelector(".update-course").setAttribute("style", "display: none");
 				document.querySelector(".delete-course").setAttribute("style", "display: none");
 				document.querySelector(".delete-stu").setAttribute("style", "display: none");
 				break;
 			case "删除课程":
-
 				document.querySelector(".delete-course").removeAttribute("style");
 				document.querySelector(".update-course").setAttribute("style", "display: none");
 				document.querySelector(".update-permission").setAttribute("style", "display: none");
 				document.querySelector(".delete-stu").setAttribute("style", "display: none");
 				break;
 			case "删除学生":
-
 				document.querySelector(".delete-stu").removeAttribute("style");
 				document.querySelector(".update-course").setAttribute("style", "display: none");
 				document.querySelector(".update-permission").setAttribute("style", "display: none");
